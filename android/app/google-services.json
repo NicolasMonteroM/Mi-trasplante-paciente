@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "977144725826",
+    "firebase_url": "https://mi-trasplante-default-rtdb.firebaseio.com",
+    "project_id": "mi-trasplante",
+    "storage_bucket": "mi-trasplante.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977144725826:android:816359f6b230f025c348db",
+        "android_client_info": {
+          "package_name": "com.flutterflow.mitrasplante"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977144725826-vb1glnkbd2j3rchtmo8tugr8jgcku0bm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutterflow.mitrasplante",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "977144725826-r6ugfmr1pd1stecm36f0usojdtmi0ood.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlAv9MqXEX46uQWmffo3fDi1f1C92Dj4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977144725826-r6ugfmr1pd1stecm36f0usojdtmi0ood.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "977144725826-j4gnq4n9nlju1k6iaiq0io89t9p3t9gk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.mitrasplante"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

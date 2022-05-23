@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>977144725826-j4gnq4n9nlju1k6iaiq0io89t9p3t9gk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.977144725826-j4gnq4n9nlju1k6iaiq0io89t9p3t9gk</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>977144725826-vb1glnkbd2j3rchtmo8tugr8jgcku0bm.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBe4UJp6MwnBvbJTDX74BmXsFw-1MaxThY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>977144725826</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.flutterflow.mitrasplante</string>
+	<key>PROJECT_ID</key>
+	<string>mi-trasplante</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mi-trasplante.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:977144725826:ios:f8642ec96acf8adbc348db</string>
+	<key>DATABASE_URL</key>
+	<string>https://mi-trasplante-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
