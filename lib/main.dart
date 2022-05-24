@@ -121,10 +121,10 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'Chat': ChatWidget(),
+      'Contenidos': ContenidosWidget(),
       'Agenda': AgendaWidget(),
       'Indicadores': IndicadoresWidget(),
       'Perfil': PerfilWidget(),
-      'Contenidos': ContenidosWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -173,14 +173,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  FFIcons.kcalendario,
+                  FFIcons.kcontenido,
                   color: currentIndex == 1
                       ? FlutterFlowTheme.of(context).primaryColor
                       : Color(0xFFC6CADB),
                   size: 24,
                 ),
                 Text(
-                  'Agenda',
+                  'Buscar',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 1
@@ -197,14 +197,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  FFIcons.ksalud,
+                  FFIcons.kcalendario,
                   color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).primaryColor
                       : Color(0xFFC6CADB),
                   size: 24,
                 ),
                 Text(
-                  'Salud',
+                  'Agenda',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 2
@@ -221,14 +221,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  FFIcons.kperfil,
+                  FFIcons.ksalud,
                   color: currentIndex == 3
                       ? FlutterFlowTheme.of(context).primaryColor
                       : Color(0xFFC6CADB),
                   size: 24,
                 ),
                 Text(
-                  'Perfil',
+                  'Salud',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 3
@@ -245,14 +245,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  FFIcons.kcontenido,
+                  FFIcons.kperfil,
                   color: currentIndex == 4
                       ? FlutterFlowTheme.of(context).primaryColor
                       : Color(0xFFC6CADB),
                   size: 24,
                 ),
                 Text(
-                  'Buscar',
+                  'Perfil',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 4

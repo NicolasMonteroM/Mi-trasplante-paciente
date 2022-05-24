@@ -124,11 +124,7 @@ class _AgendaWidgetState extends State<AgendaWidget> {
                         height: 100,
                         decoration: BoxDecoration(),
                         child: StreamBuilder<List<RecordatoriosRecord>>(
-                          stream: queryRecordatoriosRecord(
-                            queryBuilder: (recordatoriosRecord) =>
-                                recordatoriosRecord.where('hora',
-                                    isEqualTo: calendarioSelectedDay?.start),
-                          ),
+                          stream: queryRecordatoriosRecord(),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {

@@ -16,14 +16,14 @@ class BuscarWidget extends StatefulWidget {
 
 class _BuscarWidgetState extends State<BuscarWidget> {
   List<ContenidosRecord> algoliaSearchResults = [];
-  TextEditingController nameController;
+  TextEditingController searchController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Buscar'});
-    nameController = TextEditingController();
+    searchController = TextEditingController();
   }
 
   @override
@@ -102,9 +102,9 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: TextFormField(
-                                  controller: nameController,
+                                  controller: searchController,
                                   onChanged: (_) => EasyDebounce.debounce(
-                                    'nameController',
+                                    'searchController',
                                     Duration(milliseconds: 2000),
                                     () => setState(() {}),
                                   ),
@@ -121,7 +121,6 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                                           fontWeight: FontWeight.normal,
                                           useGoogleFonts: false,
                                         ),
-                                    hintText: 'Ingresa tu nombre',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -150,10 +149,10 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                                     contentPadding:
                                         EdgeInsetsDirectional.fromSTEB(
                                             20, 24, 24, 24),
-                                    suffixIcon: nameController.text.isNotEmpty
+                                    suffixIcon: searchController.text.isNotEmpty
                                         ? InkWell(
                                             onTap: () => setState(
-                                              () => nameController?.clear(),
+                                              () => searchController?.clear(),
                                             ),
                                             child: Icon(
                                               Icons.clear,
@@ -190,10 +189,11 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                             ),
                             onPressed: () async {
                               logFirebaseEvent('IconButton_ON_TAP');
-                              logFirebaseEvent('IconButton_Algolia-Search');
+                              // algolia_search
+                              logFirebaseEvent('IconButton_algolia_search');
                               setState(() => algoliaSearchResults = null);
                               await ContenidosRecord.search(
-                                term: nameController.text,
+                                term: searchController.text,
                               )
                                   .then((r) => algoliaSearchResults = r)
                                   .onError((_, __) => algoliaSearchResults = [])

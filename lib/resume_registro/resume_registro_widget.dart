@@ -1,9 +1,9 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../buscar/buscar_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -157,14 +157,14 @@ class _ResumeRegistroWidgetState extends State<ResumeRegistroWidget> {
                                                         'Button-Next_ON_TAP');
                                                     logFirebaseEvent(
                                                         'Button-Next_Navigate-To');
-                                                    await Navigator
-                                                        .pushAndRemoveUntil(
+                                                    await Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            BuscarWidget(),
+                                                            NavBarPage(
+                                                                initialPage:
+                                                                    'Chat'),
                                                       ),
-                                                      (r) => false,
                                                     );
                                                   },
                                                   text: 'Comenzar',
