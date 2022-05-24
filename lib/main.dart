@@ -10,7 +10,6 @@ import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'index.dart';
 
 void main() async {
@@ -129,140 +128,55 @@ class _NavBarPageState extends State<NavBarPage> {
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
       body: tabs[_currentPage],
-      extendBody: true,
-      bottomNavigationBar: FloatingNavbar(
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         backgroundColor: Colors.white,
         selectedItemColor: FlutterFlowTheme.of(context).primaryColor,
         unselectedItemColor: Color(0xFFC6CADB),
-        selectedBackgroundColor: Color(0x00000000),
-        borderRadius: 16,
-        itemBorderRadius: 8,
-        margin: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-        padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-        width: double.infinity,
-        elevation: 0,
-        items: [
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  FFIcons.kchat,
-                  color: currentIndex == 0
-                      ? FlutterFlowTheme.of(context).primaryColor
-                      : Color(0xFFC6CADB),
-                  size: 24,
-                ),
-                Text(
-                  'Chat',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 0
-                        ? FlutterFlowTheme.of(context).primaryColor
-                        : Color(0xFFC6CADB),
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              FFIcons.kchat,
+              size: 24,
             ),
+            label: 'Chat',
+            tooltip: '',
           ),
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  FFIcons.kcontenido,
-                  color: currentIndex == 1
-                      ? FlutterFlowTheme.of(context).primaryColor
-                      : Color(0xFFC6CADB),
-                  size: 24,
-                ),
-                Text(
-                  'Buscar',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 1
-                        ? FlutterFlowTheme.of(context).primaryColor
-                        : Color(0xFFC6CADB),
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
+          BottomNavigationBarItem(
+            icon: Icon(
+              FFIcons.kcontenido,
+              size: 24,
             ),
+            label: 'Buscar',
+            tooltip: '',
           ),
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  FFIcons.kcalendario,
-                  color: currentIndex == 2
-                      ? FlutterFlowTheme.of(context).primaryColor
-                      : Color(0xFFC6CADB),
-                  size: 24,
-                ),
-                Text(
-                  'Agenda',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 2
-                        ? FlutterFlowTheme.of(context).primaryColor
-                        : Color(0xFFC6CADB),
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
+          BottomNavigationBarItem(
+            icon: Icon(
+              FFIcons.kcalendario,
+              size: 24,
             ),
+            label: 'Agenda',
+            tooltip: '',
           ),
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  FFIcons.ksalud,
-                  color: currentIndex == 3
-                      ? FlutterFlowTheme.of(context).primaryColor
-                      : Color(0xFFC6CADB),
-                  size: 24,
-                ),
-                Text(
-                  'Salud',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 3
-                        ? FlutterFlowTheme.of(context).primaryColor
-                        : Color(0xFFC6CADB),
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
+          BottomNavigationBarItem(
+            icon: Icon(
+              FFIcons.ksalud,
+              size: 24,
             ),
+            label: 'Salud',
+            tooltip: '',
           ),
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  FFIcons.kperfil,
-                  color: currentIndex == 4
-                      ? FlutterFlowTheme.of(context).primaryColor
-                      : Color(0xFFC6CADB),
-                  size: 24,
-                ),
-                Text(
-                  'Perfil',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 4
-                        ? FlutterFlowTheme.of(context).primaryColor
-                        : Color(0xFFC6CADB),
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
+          BottomNavigationBarItem(
+            icon: Icon(
+              FFIcons.kperfil,
+              size: 24,
             ),
+            label: 'Perfil',
+            tooltip: '',
           )
         ],
       ),

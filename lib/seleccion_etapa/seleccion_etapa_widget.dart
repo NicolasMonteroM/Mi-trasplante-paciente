@@ -5,7 +5,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../resume_registro/resume_registro_widget.dart';
+import '../resumen_registro/resumen_registro_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -217,50 +217,50 @@ class _SeleccionEtapaWidgetState extends State<SeleccionEtapaWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          logFirebaseEvent('Button-Stage_ON_TAP');
-                          logFirebaseEvent('Button-Stage_Backend-Call');
+                  if ((stageValue != null) && (stageValue != ''))
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent('Button-Stage_ON_TAP');
+                            logFirebaseEvent('Button-Stage_Backend-Call');
 
-                          final usersUpdateData = createUsersRecordData(
-                            stage: stageValue,
-                          );
-                          await currentUserReference.update(usersUpdateData);
-                          logFirebaseEvent('Button-Stage_Navigate-To');
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ResumeRegistroWidget(),
-                            ),
-                          );
-                        },
-                        text: 'Continuar',
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 50,
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Proxima nova',
-                                color:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
-                                fontWeight: FontWeight.normal,
-                                useGoogleFonts: false,
+                            final usersUpdateData = createUsersRecordData(
+                              stage: stageValue,
+                            );
+                            await currentUserReference.update(usersUpdateData);
+                            logFirebaseEvent('Button-Stage_Navigate-To');
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ResumenRegistroWidget(),
                               ),
-                          elevation: 0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
+                            );
+                          },
+                          text: 'Continuar',
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 50,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Proxima nova',
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
+                                      fontWeight: FontWeight.normal,
+                                      useGoogleFonts: false,
+                                    ),
+                            elevation: 0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 12,
                           ),
-                          borderRadius: 12,
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ],

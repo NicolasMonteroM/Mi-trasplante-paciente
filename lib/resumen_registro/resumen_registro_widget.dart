@@ -8,21 +8,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ResumeRegistroWidget extends StatefulWidget {
-  const ResumeRegistroWidget({Key key}) : super(key: key);
+class ResumenRegistroWidget extends StatefulWidget {
+  const ResumenRegistroWidget({Key key}) : super(key: key);
 
   @override
-  _ResumeRegistroWidgetState createState() => _ResumeRegistroWidgetState();
+  _ResumenRegistroWidgetState createState() => _ResumenRegistroWidgetState();
 }
 
-class _ResumeRegistroWidgetState extends State<ResumeRegistroWidget> {
+class _ResumenRegistroWidgetState extends State<ResumenRegistroWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Resume_registro'});
+        parameters: {'screen_name': 'Resumen_registro'});
   }
 
   @override
@@ -43,7 +43,7 @@ class _ResumeRegistroWidgetState extends State<ResumeRegistroWidget> {
             ),
           );
         }
-        final resumeRegistroUsersRecord = snapshot.data;
+        final resumenRegistroUsersRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
@@ -112,7 +112,7 @@ class _ResumeRegistroWidgetState extends State<ResumeRegistroWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     20, 16, 20, 8),
                                             child: Text(
-                                              '¡Hola ${resumeRegistroUsersRecord.name}! 👋',
+                                              '¡Hola ${resumenRegistroUsersRecord.name}! 👋',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .title1,

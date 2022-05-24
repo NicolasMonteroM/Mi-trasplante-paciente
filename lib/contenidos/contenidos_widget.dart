@@ -53,7 +53,7 @@ class _ContenidosWidgetState extends State<ContenidosWidget> {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 24),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [

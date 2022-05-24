@@ -7,7 +7,6 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../seleccion_etapa/seleccion_etapa_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -21,9 +20,8 @@ class CompletarRegistroWidget extends StatefulWidget {
 }
 
 class _CompletarRegistroWidgetState extends State<CompletarRegistroWidget> {
-  DateTime datePicked;
-  TextEditingController edadController;
   String genderValue;
+  TextEditingController edadController;
   TextEditingController alturaController;
   TextEditingController pesoController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -129,110 +127,6 @@ class _CompletarRegistroWidgetState extends State<CompletarRegistroWidget> {
                                         useGoogleFonts: false,
                                       ),
                                 ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'Fecha de nacimiento',
-                                  style: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Proxima nova',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        useGoogleFonts: false,
-                                      ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          logFirebaseEvent(
-                                              'fechaSelccionada_ON_TAP');
-                                          logFirebaseEvent(
-                                              'fechaSelccionada_Date-Time-Picker');
-                                          await DatePicker.showDatePicker(
-                                            context,
-                                            showTitleActions: true,
-                                            onConfirm: (date) {
-                                              setState(() => datePicked = date);
-                                            },
-                                            currentTime: getCurrentTimestamp,
-                                            minTime: DateTime(0, 0, 0),
-                                            locale:
-                                                LocaleType.values.firstWhere(
-                                              (l) =>
-                                                  l.name ==
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                              orElse: null,
-                                            ),
-                                          );
-                                        },
-                                        text: 'Seleccionar',
-                                        icon: Icon(
-                                          FFIcons.kcalendario,
-                                          size: 24,
-                                        ),
-                                        options: FFButtonOptions(
-                                          width: 150,
-                                          height: 42,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryColor,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyText2
-                                              .override(
-                                                fontFamily: 'Proxima nova',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiaryColor,
-                                                useGoogleFonts: false,
-                                              ),
-                                          elevation: 0,
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryColor,
-                                            width: 1,
-                                          ),
-                                          borderRadius: 12,
-                                        ),
-                                        showLoadingIndicator: false,
-                                      ),
-                                    ),
-                                  ),
-                                  if ((datePicked != null))
-                                    Text(
-                                      dateTimeFormat('yMMMd', datePicked),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
-                                    ),
-                                ],
                               ),
                             ),
                           ],
@@ -611,54 +505,56 @@ class _CompletarRegistroWidgetState extends State<CompletarRegistroWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          logFirebaseEvent('Button-Personal-Info_ON_TAP');
-                          logFirebaseEvent('Button-Personal-Info_Backend-Call');
+                  if ((pesoController.text != null) &&
+                      (pesoController.text != ''))
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent('Button-Personal-Info_ON_TAP');
+                            logFirebaseEvent(
+                                'Button-Personal-Info_Backend-Call');
 
-                          final usersUpdateData = createUsersRecordData(
-                            height: alturaController.text,
-                            birthDate: datePicked,
-                            gender: genderValue,
-                            weight: pesoController.text,
-                            age: int.parse(edadController.text),
-                          );
-                          await currentUserReference.update(usersUpdateData);
-                          logFirebaseEvent('Button-Personal-Info_Navigate-To');
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SeleccionEtapaWidget(),
-                            ),
-                          );
-                        },
-                        text: 'Continuar',
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 50,
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Proxima nova',
-                                color:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
-                                fontWeight: FontWeight.normal,
-                                useGoogleFonts: false,
+                            final usersUpdateData = createUsersRecordData(
+                              height: alturaController.text,
+                              gender: genderValue,
+                              weight: pesoController.text,
+                              age: int.parse(edadController.text),
+                            );
+                            await currentUserReference.update(usersUpdateData);
+                            logFirebaseEvent(
+                                'Button-Personal-Info_Navigate-To');
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SeleccionEtapaWidget(),
                               ),
-                          elevation: 0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
+                            );
+                          },
+                          text: 'Continuar',
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 50,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Proxima nova',
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
+                                      fontWeight: FontWeight.normal,
+                                      useGoogleFonts: false,
+                                    ),
+                            elevation: 0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 12,
                           ),
-                          borderRadius: 12,
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ],
