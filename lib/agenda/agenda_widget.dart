@@ -237,24 +237,30 @@ class _AgendaWidgetState extends State<AgendaWidget> {
                                                         .nombre,
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .title3,
+                                                        .subtitle1,
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 4, 0, 0),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(),
-                                                    child: Text(
-                                                      listViewRecordatoriosRecord
-                                                          .indicacionesDeConsumo,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                if ((listViewRecordatoriosRecord
+                                                        .indicacionesDeConsumo) !=
+                                                    '')
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 4, 0, 0),
+                                                    child: Container(
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child: Text(
+                                                        listViewRecordatoriosRecord
+                                                            .indicacionesDeConsumo,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText2,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
                                               ],
                                             ),
                                           ),

@@ -248,14 +248,14 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                                 ),
                               );
                             }
-                            final contenidos =
+                            final searchResults =
                                 algoliaSearchResults?.toList() ?? [];
                             return Column(
                               mainAxisSize: MainAxisSize.max,
-                              children: List.generate(contenidos.length,
-                                  (contenidosIndex) {
-                                final contenidosItem =
-                                    contenidos[contenidosIndex];
+                              children: List.generate(searchResults.length,
+                                  (searchResultsIndex) {
+                                final searchResultsItem =
+                                    searchResults[searchResultsIndex];
                                 return Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 12),
@@ -288,7 +288,7 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                                                   image: DecorationImage(
                                                     fit: BoxFit.contain,
                                                     image: Image.network(
-                                                      contenidosItem.preview,
+                                                      searchResultsItem.preview,
                                                     ).image,
                                                   ),
                                                   borderRadius:
@@ -330,7 +330,7 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                                                                   .start,
                                                           children: [
                                                             Text(
-                                                              contenidosItem
+                                                              searchResultsItem
                                                                   .categoriaPrincipal,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -351,7 +351,7 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                                                               children: [
                                                                 Expanded(
                                                                   child: Text(
-                                                                    contenidosItem
+                                                                    searchResultsItem
                                                                         .nombre,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
