@@ -20,6 +20,7 @@ class NuevoMedicamentoWidget extends StatefulWidget {
 class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
   String radioButtonValue;
   TextEditingController searchController;
+  TextEditingController medicamentoController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -27,6 +28,7 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
     super.initState();
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'Nuevo_medicamento'});
+    medicamentoController = TextEditingController();
     searchController = TextEditingController();
   }
 
@@ -305,6 +307,69 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 24, 20, 0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: TextFormField(
+                            controller: medicamentoController,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Medicamento',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Proxima nova',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    fontWeight: FontWeight.normal,
+                                    useGoogleFonts: false,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Proxima nova',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    fontWeight: FontWeight.normal,
+                                    useGoogleFonts: false,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFFC9C9C9),
+                                  width: 0,
+                                ),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFFC9C9C9),
+                                  width: 0,
+                                ),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                  24, 24, 20, 24),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Proxima nova',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontWeight: FontWeight.normal,
+                                  useGoogleFonts: false,
+                                ),
+                          ),
                         ),
                       ),
                     ],

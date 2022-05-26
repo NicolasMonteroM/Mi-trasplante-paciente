@@ -18,3 +18,41 @@ String vecesAlDia(String numero) {
   }
   return temporal;
 }
+
+String intervaloDeHoras(String numero) {
+  var temporal = int.parse(numero);
+  var intervalo = 24 / temporal;
+  String intervaloDefinido = intervalo.toStringAsFixed(0);
+  return intervaloDefinido;
+}
+
+String selectorMinutos(String hora) {
+  var temporal = "";
+  if (hora != "") {
+    temporal = "00";
+  } else {
+    temporal = "";
+  }
+  return temporal;
+}
+
+String selectorHora(String hora) {
+  var temporal = "";
+  var horaInt = int.parse(hora);
+  if (horaInt > 12) {
+    horaInt = 12;
+  }
+  temporal = horaInt.toString();
+  return temporal;
+}
+
+List<String> presentacionMedicamento(String number) {
+  List<String> temporal = [];
+  var numberTemporal = double.parse(number);
+  if (numberTemporal > 1) {
+    temporal = ["pastillas", "cápsulas"];
+  } else {
+    temporal = ["pastilla", "cápsula"];
+  }
+  return temporal;
+}

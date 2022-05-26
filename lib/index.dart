@@ -19,3 +19,5 @@ export 'nuevo_medicamento/nuevo_medicamento_widget.dart'
     show NuevoMedicamentoWidget;
 export 'nuevo_medicamento_frecuencia/nuevo_medicamento_frecuencia_widget.dart'
     show NuevoMedicamentoFrecuenciaWidget;
+export 'nuevo_medicamento_dosis/nuevo_medicamento_dosis_widget.dart'
+    show NuevoMedicamentoDosisWidget;

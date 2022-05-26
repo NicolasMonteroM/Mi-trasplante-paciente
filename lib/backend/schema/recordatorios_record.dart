@@ -36,6 +36,15 @@ abstract class RecordatoriosRecord
   DateTime get fecha;
 
   @nullable
+  DateTime get fechaInicio;
+
+  @nullable
+  DateTime get fechaFinalizacion;
+
+  @nullable
+  bool get existeFinalizacion;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -44,7 +53,8 @@ abstract class RecordatoriosRecord
     ..nombre = ''
     ..tipo = ''
     ..tomaDefinida = false
-    ..tomaSaltada = false;
+    ..tomaSaltada = false
+    ..existeFinalizacion = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('recordatorios');
@@ -76,6 +86,9 @@ Map<String, dynamic> createRecordatoriosRecordData({
   bool tomaDefinida,
   bool tomaSaltada,
   DateTime fecha,
+  DateTime fechaInicio,
+  DateTime fechaFinalizacion,
+  bool existeFinalizacion,
 }) =>
     serializers.toFirestore(
         RecordatoriosRecord.serializer,
@@ -86,4 +99,7 @@ Map<String, dynamic> createRecordatoriosRecordData({
           ..hora = hora
           ..tomaDefinida = tomaDefinida
           ..tomaSaltada = tomaSaltada
-          ..fecha = fecha));
+          ..fecha = fecha
+          ..fechaInicio = fechaInicio
+          ..fechaFinalizacion = fechaFinalizacion
+          ..existeFinalizacion = existeFinalizacion));
