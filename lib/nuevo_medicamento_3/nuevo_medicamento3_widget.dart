@@ -8,7 +8,28 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NuevoMedicamento3Widget extends StatefulWidget {
-  const NuevoMedicamento3Widget({Key key}) : super(key: key);
+  const NuevoMedicamento3Widget({
+    Key key,
+    this.horaParametro,
+    this.dosisParametro,
+    this.repeticionesParametro,
+    this.finalizacionParametro,
+    this.inicioParametro,
+    this.presentacionParametro,
+    this.nombreParametro,
+    this.concentracionParametro,
+    this.repeticionesP2,
+  }) : super(key: key);
+
+  final DateTime horaParametro;
+  final String dosisParametro;
+  final String repeticionesParametro;
+  final DateTime finalizacionParametro;
+  final DateTime inicioParametro;
+  final String presentacionParametro;
+  final String nombreParametro;
+  final String concentracionParametro;
+  final String repeticionesP2;
 
   @override
   _NuevoMedicamento3WidgetState createState() =>
@@ -302,7 +323,21 @@ class _NuevoMedicamento3WidgetState extends State<NuevoMedicamento3Widget> {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => NuevoMedicamento4Widget(),
+                              builder: (context) => NuevoMedicamento4Widget(
+                                nombreParametro: widget.nombreParametro,
+                                concentracionParametro:
+                                    widget.concentracionParametro,
+                                inicioParametro: widget.inicioParametro,
+                                finalizacionParametro:
+                                    widget.finalizacionParametro,
+                                dosisParametro: widget.dosisParametro,
+                                horaParametro: widget.horaParametro,
+                                repeticionesParametro:
+                                    widget.repeticionesParametro,
+                                presentacionParametro:
+                                    widget.presentacionParametro,
+                                repeticionesP2: widget.repeticionesP2,
+                              ),
                             ),
                           );
                         },

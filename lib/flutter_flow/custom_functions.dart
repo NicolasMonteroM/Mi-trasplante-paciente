@@ -94,3 +94,34 @@ bool imagenSubida(String imagen) {
     return true;
   }
 }
+
+String fechaSeleccionada(DateTime fecha) {
+  // turn date into string
+  DateFormat dateFormat = DateFormat.MMMMd('en_US');
+  return dateFormat.format(fecha);
+}
+
+bool finalizacionSeleccionada(DateTime fecha) {
+  // if date is selected return true
+  if (fecha == null) {
+    return false;
+  }
+  return true;
+}
+
+bool existeFinalizacion(DateTime fecha) {
+  // if date is defined return true
+  print("hola mundo77");
+  if (fecha != null) {
+    print("hola mundo88");
+    return true;
+  }
+  return false;
+}
+
+DateTime diaSiguiente(DateTime diaActual) {
+  // add an aditional day
+  var hoy = diaActual;
+  hoy.add(Duration(hours: 24));
+  return hoy;
+}

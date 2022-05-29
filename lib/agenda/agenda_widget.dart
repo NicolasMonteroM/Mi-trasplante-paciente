@@ -1,8 +1,11 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/push_notifications/push_notifications_util.dart';
 import '../components/nuevo_recordatorio_widget.dart';
 import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -128,7 +131,8 @@ class _AgendaWidgetState extends State<AgendaWidget> {
                           Container(
                             decoration: BoxDecoration(),
                             child: Text(
-                              'Hello World',
+                              functions.fechaSeleccionada(
+                                  calendarioSelectedDay.start),
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ),
@@ -172,232 +176,259 @@ class _AgendaWidgetState extends State<AgendaWidget> {
                                 return Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 0, 16, 16),
-                                  child: Container(
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .tertiaryColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 24,
-                                          color: Color(0x1A414141),
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 16, 16, 16),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xFFEEEEEE),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(8, 4, 8, 4),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                    ),
-                                                    child: Text(
-                                                      dateTimeFormat(
-                                                          'jm',
-                                                          listViewRecordatoriosRecord
-                                                              .hora),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Proxima nova',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            useGoogleFonts:
-                                                                false,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Icon(
-                                                FFIcons.kasset26,
-                                                color: Color(0xFFC6CADB),
-                                                size: 20,
-                                              ),
-                                            ],
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 12, 0, 0),
-                                            child: Column(
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'AGENDA_PAGE_Container_7pgr1b4v_ON_TAP');
+                                      logFirebaseEvent(
+                                          'Container_Trigger-Push-Notification');
+                                      triggerPushNotification(
+                                        notificationTitle:
+                                            'Toma de medicamento',
+                                        notificationText:
+                                            'Recuerda tomar tu medicamento',
+                                        scheduledTime:
+                                            listViewRecordatoriosRecord.hora,
+                                        notificationSound: 'default',
+                                        userRefs: [currentUserReference],
+                                        initialPageName: 'Agenda',
+                                        parameterData: {},
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 24,
+                                            color: Color(0x1A414141),
+                                          )
+                                        ],
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16, 16, 16, 16),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
                                               mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.stretch,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Container(
-                                                  decoration: BoxDecoration(),
-                                                  child: Text(
-                                                    listViewRecordatoriosRecord
-                                                        .nombre,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .subtitle1,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFFEEEEEE),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
                                                   ),
-                                                ),
-                                                if ((listViewRecordatoriosRecord
-                                                        .indicacionesDeConsumo) !=
-                                                    '')
-                                                  Padding(
+                                                  child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                0, 4, 0, 0),
+                                                                8, 4, 8, 4),
                                                     child: Container(
-                                                      decoration:
-                                                          BoxDecoration(),
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                      ),
                                                       child: Text(
-                                                        listViewRecordatoriosRecord
-                                                            .indicacionesDeConsumo,
+                                                        dateTimeFormat(
+                                                            'jm',
+                                                            listViewRecordatoriosRecord
+                                                                .hora),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText2,
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Proxima nova',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts:
+                                                                      false,
+                                                                ),
                                                       ),
                                                     ),
                                                   ),
+                                                ),
+                                                Icon(
+                                                  FFIcons.kasset26,
+                                                  color: Color(0xFFC6CADB),
+                                                  size: 20,
+                                                ),
                                               ],
                                             ),
-                                          ),
-                                          if (listViewRecordatoriosRecord
-                                                  .tomaDefinida ??
-                                              true)
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 4, 0, 0),
+                                                  .fromSTEB(0, 12, 0, 0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.stretch,
                                                 children: [
-                                                  if (listViewRecordatoriosRecord
-                                                          .tomaSaltada ??
-                                                      true)
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Container(
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Text(
-                                                            'Tomada saltada',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Proxima nova',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .negativeFeedback,
-                                                                  useGoogleFonts:
-                                                                      false,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          width: 24,
-                                                          height: 24,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .negativeFeedback,
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Icon(
-                                                            FFIcons.kasset20,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .tertiaryColor,
-                                                            size: 16,
-                                                          ),
-                                                        ),
-                                                      ],
+                                                  Container(
+                                                    decoration: BoxDecoration(),
+                                                    child: Text(
+                                                      listViewRecordatoriosRecord
+                                                          .nombre,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle1,
                                                     ),
-                                                  if (!(listViewRecordatoriosRecord
-                                                          .tomaSaltada) ??
-                                                      true)
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Container(
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Text(
-                                                            'Tomada a las ${dateTimeFormat('jm', listViewRecordatoriosRecord.hora)}',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Proxima nova',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .positiveFeedback,
-                                                                  useGoogleFonts:
-                                                                      false,
-                                                                ),
-                                                          ),
+                                                  ),
+                                                  if ((listViewRecordatoriosRecord
+                                                          .indicacionesDeConsumo) !=
+                                                      '')
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 4, 0, 0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(),
+                                                        child: Text(
+                                                          listViewRecordatoriosRecord
+                                                              .indicacionesDeConsumo,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText2,
                                                         ),
-                                                        Container(
-                                                          width: 24,
-                                                          height: 24,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .positiveFeedback,
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Icon(
-                                                            FFIcons.kasset17,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .tertiaryColor,
-                                                            size: 16,
-                                                          ),
-                                                        ),
-                                                      ],
+                                                      ),
                                                     ),
                                                 ],
                                               ),
                                             ),
-                                        ],
+                                            if (listViewRecordatoriosRecord
+                                                    .tomaDefinida ??
+                                                true)
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .stretch,
+                                                  children: [
+                                                    if (listViewRecordatoriosRecord
+                                                            .tomaSaltada ??
+                                                        true)
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Container(
+                                                            decoration:
+                                                                BoxDecoration(),
+                                                            child: Text(
+                                                              'Tomada saltada',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText2
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Proxima nova',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .negativeFeedback,
+                                                                    useGoogleFonts:
+                                                                        false,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            width: 24,
+                                                            height: 24,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .negativeFeedback,
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
+                                                            child: Icon(
+                                                              FFIcons.kasset20,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .tertiaryColor,
+                                                              size: 16,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    if (!(listViewRecordatoriosRecord
+                                                            .tomaSaltada) ??
+                                                        true)
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Container(
+                                                            decoration:
+                                                                BoxDecoration(),
+                                                            child: Text(
+                                                              'Tomada a las ${dateTimeFormat('jm', listViewRecordatoriosRecord.hora)}',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText2
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Proxima nova',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .positiveFeedback,
+                                                                    useGoogleFonts:
+                                                                        false,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            width: 24,
+                                                            height: 24,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .positiveFeedback,
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
+                                                            child: Icon(
+                                                              FFIcons.kasset17,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .tertiaryColor,
+                                                              size: 16,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                  ],
+                                                ),
+                                              ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

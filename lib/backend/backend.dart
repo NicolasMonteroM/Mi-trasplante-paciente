@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/contenidos_record.dart';
 import 'schema/users_record.dart';
 import 'schema/recordatorios_record.dart';
+import 'schema/indicadores_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -17,6 +18,7 @@ export 'schema/serializers.dart';
 export 'schema/contenidos_record.dart';
 export 'schema/users_record.dart';
 export 'schema/recordatorios_record.dart';
+export 'schema/indicadores_record.dart';
 
 /// Functions to query ContenidosRecords (as a Stream and as a Future).
 Stream<List<ContenidosRecord>> queryContenidosRecord({
@@ -138,6 +140,48 @@ Future<FFFirestorePage<RecordatoriosRecord>> queryRecordatoriosRecordPage({
     queryCollectionPage(
       RecordatoriosRecord.collection,
       RecordatoriosRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query IndicadoresRecords (as a Stream and as a Future).
+Stream<List<IndicadoresRecord>> queryIndicadoresRecord({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      IndicadoresRecord.collection,
+      IndicadoresRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<IndicadoresRecord>> queryIndicadoresRecordOnce({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      IndicadoresRecord.collection,
+      IndicadoresRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<IndicadoresRecord>> queryIndicadoresRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      IndicadoresRecord.collection,
+      IndicadoresRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

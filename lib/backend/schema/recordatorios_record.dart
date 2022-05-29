@@ -45,6 +45,24 @@ abstract class RecordatoriosRecord
   bool get existeFinalizacion;
 
   @nullable
+  String get imagen;
+
+  @nullable
+  String get dosis;
+
+  @nullable
+  String get repeticiones;
+
+  @nullable
+  String get presentacion;
+
+  @nullable
+  String get concentracion;
+
+  @nullable
+  String get repeticionesP2;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -54,7 +72,13 @@ abstract class RecordatoriosRecord
     ..tipo = ''
     ..tomaDefinida = false
     ..tomaSaltada = false
-    ..existeFinalizacion = false;
+    ..existeFinalizacion = false
+    ..imagen = ''
+    ..dosis = ''
+    ..repeticiones = ''
+    ..presentacion = ''
+    ..concentracion = ''
+    ..repeticionesP2 = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('recordatorios');
@@ -89,6 +113,12 @@ Map<String, dynamic> createRecordatoriosRecordData({
   DateTime fechaInicio,
   DateTime fechaFinalizacion,
   bool existeFinalizacion,
+  String imagen,
+  String dosis,
+  String repeticiones,
+  String presentacion,
+  String concentracion,
+  String repeticionesP2,
 }) =>
     serializers.toFirestore(
         RecordatoriosRecord.serializer,
@@ -102,4 +132,10 @@ Map<String, dynamic> createRecordatoriosRecordData({
           ..fecha = fecha
           ..fechaInicio = fechaInicio
           ..fechaFinalizacion = fechaFinalizacion
-          ..existeFinalizacion = existeFinalizacion));
+          ..existeFinalizacion = existeFinalizacion
+          ..imagen = imagen
+          ..dosis = dosis
+          ..repeticiones = repeticiones
+          ..presentacion = presentacion
+          ..concentracion = concentracion
+          ..repeticionesP2 = repeticionesP2));

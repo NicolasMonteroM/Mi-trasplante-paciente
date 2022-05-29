@@ -1,4 +1,7 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
+import '../components/confirmacion_medicamento_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -7,6 +10,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
 import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,7 +18,28 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
 class NuevoMedicamento4Widget extends StatefulWidget {
-  const NuevoMedicamento4Widget({Key key}) : super(key: key);
+  const NuevoMedicamento4Widget({
+    Key key,
+    this.nombreParametro,
+    this.concentracionParametro,
+    this.inicioParametro,
+    this.finalizacionParametro,
+    this.dosisParametro,
+    this.repeticionesParametro,
+    this.horaParametro,
+    this.presentacionParametro,
+    this.repeticionesP2,
+  }) : super(key: key);
+
+  final String nombreParametro;
+  final String concentracionParametro;
+  final DateTime inicioParametro;
+  final DateTime finalizacionParametro;
+  final String dosisParametro;
+  final String repeticionesParametro;
+  final DateTime horaParametro;
+  final String presentacionParametro;
+  final String repeticionesP2;
 
   @override
   _NuevoMedicamento4WidgetState createState() =>
@@ -23,15 +48,15 @@ class NuevoMedicamento4Widget extends StatefulWidget {
 
 class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
   String uploadedFileUrl = '';
-  TextEditingController medicamentoController;
+  TextEditingController indicacionesController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    indicacionesController = TextEditingController();
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'Nuevo_medicamento_4'});
-    medicamentoController = TextEditingController();
   }
 
   @override
@@ -171,7 +196,7 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
                                 ),
                               ),
                               TextFormField(
-                                controller: medicamentoController,
+                                controller: indicacionesController,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelStyle: FlutterFlowTheme.of(context)
@@ -265,7 +290,7 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
                                   ],
                                 ),
                               ),
-                              if (!(functions.imagenSubida(uploadedFileUrl)) ??
+                              if (functions.imagenSubida(uploadedFileUrl) ??
                                   true)
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -361,116 +386,124 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
                                             ),
                                             borderRadius: 12,
                                           ),
+                                          showLoadingIndicator: false,
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFEEEEEE),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 8, 8, 8),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'NUEVO_MEDICAMENTO_4_PAGE_Image_ydvo135x_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Image_Expand-Image');
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              child:
-                                                  FlutterFlowExpandedImageView(
-                                                image: Image.network(
-                                                  uploadedFileUrl,
-                                                  fit: BoxFit.contain,
-                                                ),
-                                                allowRotation: false,
-                                                tag: uploadedFileUrl,
-                                                useHeroAnimation: true,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        child: Hero(
-                                          tag: uploadedFileUrl,
-                                          transitionOnUserGestures: true,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                            child: Image.network(
-                                              uploadedFileUrl,
-                                              width: 120,
-                                              height: 120,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 8, 0, 0),
-                                        child: InkWell(
+                              if (!(functions.imagenSubida(uploadedFileUrl)) ??
+                                  true)
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEEEEEE),
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8, 8, 8, 8),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'NUEVO_MEDICAMENTO_4_PAGE_Row_1lohjanx_ON_TAP');
+                                                'NUEVO_MEDICAMENTO_4_PAGE_Image_ydvo135x_ON_TAP');
                                             logFirebaseEvent(
-                                                'Row_Custom-Action');
-                                            await actions.borrarImagen(
-                                              uploadedFileUrl,
-                                            );
-                                          },
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 4, 0),
-                                                child: Icon(
-                                                  FFIcons.kasset23,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .negativeFeedback,
-                                                  size: 24,
+                                                'Image_Expand-Image');
+                                            await Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                type: PageTransitionType.fade,
+                                                child:
+                                                    FlutterFlowExpandedImageView(
+                                                  image: Image.network(
+                                                    uploadedFileUrl,
+                                                    fit: BoxFit.contain,
+                                                  ),
+                                                  allowRotation: false,
+                                                  tag: uploadedFileUrl,
+                                                  useHeroAnimation: true,
                                                 ),
                                               ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    'Borrar foto',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Proxima nova',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .negativeFeedback,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          useGoogleFonts: false,
-                                                        ),
-                                                  ),
-                                                ],
+                                            );
+                                          },
+                                          child: Hero(
+                                            tag: uploadedFileUrl,
+                                            transitionOnUserGestures: true,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                              child: Image.network(
+                                                uploadedFileUrl,
+                                                width: 120,
+                                                height: 120,
+                                                fit: BoxFit.cover,
                                               ),
-                                            ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 8, 0, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'NUEVO_MEDICAMENTO_4_PAGE_Row_1lohjanx_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Row_Custom-Action');
+                                              await actions.borrarImagen(
+                                                uploadedFileUrl,
+                                              );
+                                            },
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 4, 0),
+                                                  child: Icon(
+                                                    FFIcons.kasset23,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .negativeFeedback,
+                                                    size: 24,
+                                                  ),
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      'Borrar foto',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Proxima nova',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .negativeFeedback,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                useGoogleFonts:
+                                                                    false,
+                                                              ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
                             ],
                           ),
                         ),
@@ -522,8 +555,51 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Continue pressed ...');
+                        onPressed: () async {
+                          logFirebaseEvent(
+                              'NUEVO_MEDICAMENTO_4_PAGE_Continue_ON_TAP');
+                          logFirebaseEvent('Continue_Backend-Call');
+
+                          final recordatoriosCreateData =
+                              createRecordatoriosRecordData(
+                            indicacionesDeConsumo: indicacionesController.text,
+                            nombre: widget.nombreParametro,
+                            tipo: 'Medicamento',
+                            hora: widget.horaParametro,
+                            fecha: widget.inicioParametro,
+                            imagen: uploadedFileUrl,
+                            dosis: widget.dosisParametro,
+                            repeticiones: widget.dosisParametro,
+                            presentacion: widget.presentacionParametro,
+                            fechaInicio: widget.inicioParametro,
+                            fechaFinalizacion: widget.finalizacionParametro,
+                            concentracion: widget.concentracionParametro,
+                            repeticionesP2: widget.repeticionesP2,
+                            existeFinalizacion: functions.existeFinalizacion(
+                                widget.finalizacionParametro),
+                          );
+                          await RecordatoriosRecord.collection
+                              .doc()
+                              .set(recordatoriosCreateData);
+                          logFirebaseEvent('Continue_Bottom-Sheet');
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: Container(
+                                  height: 420,
+                                  child: ConfirmacionMedicamentoWidget(
+                                    nombreParametro: widget.nombreParametro,
+                                    dosisParametro:
+                                        '${widget.dosisParametro} ${widget.repeticionesParametro}',
+                                  ),
+                                ),
+                              );
+                            },
+                          );
                         },
                         text: 'Continuar',
                         options: FFButtonOptions(

@@ -7,7 +7,6 @@ import '../../flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 
 // Begin custom action code
-Future<bool> mostrarFinalizacion() async {
-  var mostrarenUI = true;
-  return mostrarenUI;
+Future borrarFinalizacion(DateTime fecha) async {
+  fecha = null;
 }

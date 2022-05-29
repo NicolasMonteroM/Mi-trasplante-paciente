@@ -15,17 +15,17 @@ class NuevoMedicamentoWidget extends StatefulWidget {
 }
 
 class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
+  TextEditingController concentracionController;
   TextEditingController medicamentoController;
-  TextEditingController ooncentracionController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    concentracionController = TextEditingController();
+    medicamentoController = TextEditingController();
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'Nuevo_medicamento'});
-    medicamentoController = TextEditingController();
-    ooncentracionController = TextEditingController();
   }
 
   @override
@@ -259,7 +259,7 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 8, 0),
                                     child: TextFormField(
-                                      controller: ooncentracionController,
+                                      controller: concentracionController,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelStyle: FlutterFlowTheme.of(context)
@@ -368,7 +368,11 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => NuevoMedicamento2Widget(),
+                              builder: (context) => NuevoMedicamento2Widget(
+                                nombreParametro: medicamentoController.text,
+                                concentracionParametro:
+                                    concentracionController.text,
+                              ),
                             ),
                           );
                         },
