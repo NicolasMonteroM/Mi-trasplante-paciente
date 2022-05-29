@@ -653,7 +653,7 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
 
                               logFirebaseEvent(
                                   'Button-create-account_Navigate-To');
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
@@ -661,6 +661,7 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
                                   reverseDuration: Duration(milliseconds: 300),
                                   child: CompletarRegistroWidget(),
                                 ),
+                                (r) => false,
                               );
                             },
                             text: 'Continuar',
