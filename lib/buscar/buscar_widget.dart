@@ -191,8 +191,8 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                             onPressed: () async {
                               logFirebaseEvent(
                                   'BUSCAR_PAGE_arrow_forward_rounded_ICON_ON_TAP');
-                              // algolia_search
-                              logFirebaseEvent('IconButton_algolia_search');
+                              // Action 1
+                              logFirebaseEvent('IconButton_Action1');
                               setState(() => algoliaSearchResults = null);
                               await ContenidosRecord.search(
                                 term: searchController.text,
