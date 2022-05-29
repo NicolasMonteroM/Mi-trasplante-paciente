@@ -17,9 +17,9 @@ export 'contenido_ref/contenido_ref_widget.dart' show ContenidoRefWidget;
 export 'contenidos/contenidos_widget.dart' show ContenidosWidget;
 export 'nuevo_medicamento/nuevo_medicamento_widget.dart'
     show NuevoMedicamentoWidget;
-export 'nuevo_medicamento_frecuencia/nuevo_medicamento_frecuencia_widget.dart'
-    show NuevoMedicamentoFrecuenciaWidget;
-export 'nuevo_medicamento_dosis/nuevo_medicamento_dosis_widget.dart'
-    show NuevoMedicamentoDosisWidget;
-export 'nuevo_medicamento_adicional/nuevo_medicamento_adicional_widget.dart'
-    show NuevoMedicamentoAdicionalWidget;
+export 'nuevo_medicamento_2/nuevo_medicamento2_widget.dart'
+    show NuevoMedicamento2Widget;
+export 'nuevo_medicamento_3/nuevo_medicamento3_widget.dart'
+    show NuevoMedicamento3Widget;
+export 'nuevo_medicamento_4/nuevo_medicamento4_widget.dart'
+    show NuevoMedicamento4Widget;

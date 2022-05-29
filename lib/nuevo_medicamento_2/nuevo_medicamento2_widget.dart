@@ -3,7 +3,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../nuevo_medicamento_dosis/nuevo_medicamento_dosis_widget.dart';
+import '../nuevo_medicamento_3/nuevo_medicamento3_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -12,16 +12,15 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NuevoMedicamentoFrecuenciaWidget extends StatefulWidget {
-  const NuevoMedicamentoFrecuenciaWidget({Key key}) : super(key: key);
+class NuevoMedicamento2Widget extends StatefulWidget {
+  const NuevoMedicamento2Widget({Key key}) : super(key: key);
 
   @override
-  _NuevoMedicamentoFrecuenciaWidgetState createState() =>
-      _NuevoMedicamentoFrecuenciaWidgetState();
+  _NuevoMedicamento2WidgetState createState() =>
+      _NuevoMedicamento2WidgetState();
 }
 
-class _NuevoMedicamentoFrecuenciaWidgetState
-    extends State<NuevoMedicamentoFrecuenciaWidget> {
+class _NuevoMedicamento2WidgetState extends State<NuevoMedicamento2Widget> {
   DateTime datePicked1;
   String numeroDeDosisValue;
   String presentacionValue;
@@ -37,7 +36,7 @@ class _NuevoMedicamentoFrecuenciaWidgetState
     super.initState();
     alturaController = TextEditingController();
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Nuevo_medicamento_frecuencia'});
+        parameters: {'screen_name': 'Nuevo_medicamento_2'});
   }
 
   @override
@@ -77,7 +76,7 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                               ),
                               onPressed: () async {
                                 logFirebaseEvent(
-                                    'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_arrow_back_rounded_ICON_ON_TAP');
+                                    'NUEVO_MEDICAMENTO_2_PAGE_arrow_back_rounded_ICON_ON_TAP');
                                 logFirebaseEvent('IconButton_Navigate-Back');
                                 Navigator.pop(context);
                               },
@@ -400,7 +399,7 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                                 child: InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_seleccionar-fecha_ON_TAP');
+                                        'NUEVO_MEDICAMENTO_2_PAGE_seleccionar-fecha_ON_TAP');
                                     logFirebaseEvent(
                                         'seleccionar-fecha_Date-Time-Picker');
                                     await DatePicker.showTimePicker(
@@ -487,7 +486,7 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                                 child: InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_fechadeinicio_ON_TAP');
+                                        'NUEVO_MEDICAMENTO_2_PAGE_fechadeinicio_ON_TAP');
                                     logFirebaseEvent(
                                         'fechadeinicio_Date-Time-Picker');
                                     await DatePicker.showDatePicker(
@@ -572,7 +571,7 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_Row_xlgzydkx_ON_TAP');
+                                            'NUEVO_MEDICAMENTO_2_PAGE_Row_xlgzydkx_ON_TAP');
                                         logFirebaseEvent('Row_Custom-Action');
                                         mostrarDuracion =
                                             await actions.mostrarFinalizacion();
@@ -729,7 +728,7 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                                 child: InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_Icon_ayabw92b_ON_TAP');
+                                        'NUEVO_MEDICAMENTO_2_PAGE_Icon_ayabw92b_ON_TAP');
                                     logFirebaseEvent('Icon_Custom-Action');
                                     mostrarAgregarDuracion =
                                         await actions.esconderFinalizacion();
@@ -797,13 +796,12 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                       child: FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
-                              'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_Continue_ON_TAP');
+                              'NUEVO_MEDICAMENTO_2_PAGE_Continue_ON_TAP');
                           logFirebaseEvent('Continue_Navigate-To');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  NuevoMedicamentoDosisWidget(),
+                              builder: (context) => NuevoMedicamento3Widget(),
                             ),
                           );
                         },

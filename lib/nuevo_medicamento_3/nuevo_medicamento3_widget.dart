@@ -2,28 +2,27 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../nuevo_medicamento_adicional/nuevo_medicamento_adicional_widget.dart';
+import '../nuevo_medicamento_4/nuevo_medicamento4_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NuevoMedicamentoDosisWidget extends StatefulWidget {
-  const NuevoMedicamentoDosisWidget({Key key}) : super(key: key);
+class NuevoMedicamento3Widget extends StatefulWidget {
+  const NuevoMedicamento3Widget({Key key}) : super(key: key);
 
   @override
-  _NuevoMedicamentoDosisWidgetState createState() =>
-      _NuevoMedicamentoDosisWidgetState();
+  _NuevoMedicamento3WidgetState createState() =>
+      _NuevoMedicamento3WidgetState();
 }
 
-class _NuevoMedicamentoDosisWidgetState
-    extends State<NuevoMedicamentoDosisWidget> {
+class _NuevoMedicamento3WidgetState extends State<NuevoMedicamento3Widget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Nuevo_medicamento_dosis'});
+        parameters: {'screen_name': 'Nuevo_medicamento_3'});
   }
 
   @override
@@ -63,7 +62,7 @@ class _NuevoMedicamentoDosisWidgetState
                               ),
                               onPressed: () async {
                                 logFirebaseEvent(
-                                    'NUEVO_MEDICAMENTO_DOSIS_PAGE_arrow_back_rounded_ICON_ON_TAP');
+                                    'NUEVO_MEDICAMENTO_3_PAGE_arrow_back_rounded_ICON_ON_TAP');
                                 logFirebaseEvent('IconButton_Navigate-Back');
                                 Navigator.pop(context);
                               },
@@ -298,13 +297,12 @@ class _NuevoMedicamentoDosisWidgetState
                       child: FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
-                              'NUEVO_MEDICAMENTO_DOSIS_PAGE_Continue_ON_TAP');
+                              'NUEVO_MEDICAMENTO_3_PAGE_Continue_ON_TAP');
                           logFirebaseEvent('Continue_Navigate-To');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  NuevoMedicamentoAdicionalWidget(),
+                              builder: (context) => NuevoMedicamento4Widget(),
                             ),
                           );
                         },

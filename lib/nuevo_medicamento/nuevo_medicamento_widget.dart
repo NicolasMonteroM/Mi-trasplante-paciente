@@ -2,7 +2,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../nuevo_medicamento_frecuencia/nuevo_medicamento_frecuencia_widget.dart';
+import '../nuevo_medicamento_2/nuevo_medicamento2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -368,8 +368,7 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  NuevoMedicamentoFrecuenciaWidget(),
+                              builder: (context) => NuevoMedicamento2Widget(),
                             ),
                           );
                         },

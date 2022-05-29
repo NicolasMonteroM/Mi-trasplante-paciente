@@ -13,16 +13,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class NuevoMedicamentoAdicionalWidget extends StatefulWidget {
-  const NuevoMedicamentoAdicionalWidget({Key key}) : super(key: key);
+class NuevoMedicamento4Widget extends StatefulWidget {
+  const NuevoMedicamento4Widget({Key key}) : super(key: key);
 
   @override
-  _NuevoMedicamentoAdicionalWidgetState createState() =>
-      _NuevoMedicamentoAdicionalWidgetState();
+  _NuevoMedicamento4WidgetState createState() =>
+      _NuevoMedicamento4WidgetState();
 }
 
-class _NuevoMedicamentoAdicionalWidgetState
-    extends State<NuevoMedicamentoAdicionalWidget> {
+class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
   String uploadedFileUrl = '';
   TextEditingController medicamentoController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -31,7 +30,7 @@ class _NuevoMedicamentoAdicionalWidgetState
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Nuevo_medicamento_adicional'});
+        parameters: {'screen_name': 'Nuevo_medicamento_4'});
     medicamentoController = TextEditingController();
   }
 
@@ -72,7 +71,7 @@ class _NuevoMedicamentoAdicionalWidgetState
                               ),
                               onPressed: () async {
                                 logFirebaseEvent(
-                                    'NUEVO_MEDICAMENTO_ADICIONAL_PAGE_arrow_back_rounded_ICON_ON_TAP');
+                                    'NUEVO_MEDICAMENTO_4_PAGE_arrow_back_rounded_ICON_ON_TAP');
                                 logFirebaseEvent('IconButton_Navigate-Back');
                                 Navigator.pop(context);
                               },
@@ -283,7 +282,7 @@ class _NuevoMedicamentoAdicionalWidgetState
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
-                                                'NUEVO_MEDICAMENTO_ADICIONAL_PAGE_agregarImagen_ON_TAP');
+                                                'NUEVO_MEDICAMENTO_4_PAGE_agregarImagen_ON_TAP');
                                             logFirebaseEvent(
                                                 'agregarImagen_Upload-Photo-Video');
                                             final selectedMedia =
@@ -381,7 +380,7 @@ class _NuevoMedicamentoAdicionalWidgetState
                                       InkWell(
                                         onTap: () async {
                                           logFirebaseEvent(
-                                              'NUEVO_MEDICAMENTO_ADICIONAL_PAGE_Image_ydvo135x_ON_TAP');
+                                              'NUEVO_MEDICAMENTO_4_PAGE_Image_ydvo135x_ON_TAP');
                                           logFirebaseEvent(
                                               'Image_Expand-Image');
                                           await Navigator.push(
@@ -422,7 +421,7 @@ class _NuevoMedicamentoAdicionalWidgetState
                                         child: InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'NUEVO_MEDICAMENTO_ADICIONAL_PAGE_Row_1lohjanx_ON_TAP');
+                                                'NUEVO_MEDICAMENTO_4_PAGE_Row_1lohjanx_ON_TAP');
                                             logFirebaseEvent(
                                                 'Row_Custom-Action');
                                             await actions.borrarImagen(
