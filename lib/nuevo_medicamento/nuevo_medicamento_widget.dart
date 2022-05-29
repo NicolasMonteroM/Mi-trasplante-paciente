@@ -15,17 +15,17 @@ class NuevoMedicamentoWidget extends StatefulWidget {
 }
 
 class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
-  TextEditingController alturaController;
   TextEditingController medicamentoController;
+  TextEditingController ooncentracionController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    alturaController = TextEditingController();
-    medicamentoController = TextEditingController();
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'Nuevo_medicamento'});
+    medicamentoController = TextEditingController();
+    ooncentracionController = TextEditingController();
   }
 
   @override
@@ -259,7 +259,7 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 8, 0),
                                     child: TextFormField(
-                                      controller: alturaController,
+                                      controller: ooncentracionController,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelStyle: FlutterFlowTheme.of(context)

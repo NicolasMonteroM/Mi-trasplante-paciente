@@ -400,9 +400,9 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                                 child: InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_seleccinar-fecha_ON_TAP');
+                                        'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_seleccionar-fecha_ON_TAP');
                                     logFirebaseEvent(
-                                        'seleccinar-fecha_Date-Time-Picker');
+                                        'seleccionar-fecha_Date-Time-Picker');
                                     await DatePicker.showTimePicker(
                                       context,
                                       showTitleActions: true,
@@ -555,66 +555,30 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                             ],
                           ),
                         ),
-                        if (mostrarAgregarDuracion ?? true)
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 16, 0),
-                                      child: InkWell(
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_Row_xlgzydkx_ON_TAP');
-                                          logFirebaseEvent('Row_Custom-Action');
-                                          mostrarDuracion = await actions
-                                              .mostrarFinalizacion();
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 16, 0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_Row_xlgzydkx_ON_TAP');
+                                        logFirebaseEvent('Row_Custom-Action');
+                                        mostrarDuracion =
+                                            await actions.mostrarFinalizacion();
 
-                                          setState(() {});
-                                        },
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 4, 0),
-                                              child: Text(
-                                                'Agregar duración*',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily:
-                                                              'Proxima nova',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryColor,
-                                                          useGoogleFonts: false,
-                                                        ),
-                                              ),
-                                            ),
-                                            Icon(
-                                              FFIcons.kasset18,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryColor,
-                                              size: 16,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 16, 0),
+                                        setState(() {});
+                                      },
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -623,137 +587,166 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 4, 0),
                                             child: Text(
-                                              'Verifica la fecha de finalización con tu médico',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText2
-                                                      .override(
-                                                        fontFamily:
-                                                            'Proxima nova',
-                                                        fontSize: 14,
-                                                        useGoogleFonts: false,
-                                                      ),
+                                              'Agregar duración*',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .subtitle2
+                                                  .override(
+                                                    fontFamily: 'Proxima nova',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryColor,
+                                                    useGoogleFonts: false,
+                                                  ),
                                             ),
+                                          ),
+                                          Icon(
+                                            FFIcons.kasset18,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryColor,
+                                            size: 16,
                                           ),
                                         ],
                                       ),
                                     ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 16, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 4, 0),
+                                          child: Text(
+                                            'Verifica la fecha de finalización con tu médico',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText2
+                                                .override(
+                                                  fontFamily: 'Proxima nova',
+                                                  fontSize: 14,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      '¿Por cuántos días \ntomará el medicamento?',
+                                      style: FlutterFlowTheme.of(context)
+                                          .subtitle2
+                                          .override(
+                                            fontFamily: 'Proxima nova',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
-                        if (!(mostrarDuracion) ?? true)
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 16, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        '¿Por cuántos días \ntomará el medicamento?',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Proxima nova',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              useGoogleFonts: false,
-                                            ),
+                              ),
+                              Container(
+                                width: 88,
+                                height: 50,
+                                decoration: BoxDecoration(),
+                                child: TextFormField(
+                                  controller: alturaController,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Proxima nova',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          useGoogleFonts: false,
+                                        ),
+                                    hintText: '0',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Proxima nova',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          useGoogleFonts: false,
+                                        ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFC9C9C9),
+                                        width: 1,
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 88,
-                                  height: 50,
-                                  decoration: BoxDecoration(),
-                                  child: TextFormField(
-                                    controller: alturaController,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Proxima nova',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            useGoogleFonts: false,
-                                          ),
-                                      hintText: '0',
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Proxima nova',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            useGoogleFonts: false,
-                                          ),
-                                      enabledBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xFFC9C9C9),
-                                          width: 1,
-                                        ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
                                       ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xFFC9C9C9),
-                                          width: 1,
-                                        ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      filled: true,
-                                      fillColor: Colors.white,
-                                      contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              16, 0, 16, 4),
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
-                                    textAlign: TextAlign.center,
-                                    keyboardType: TextInputType.number,
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFC9C9C9),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    contentPadding:
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            16, 0, 16, 4),
                                   ),
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  textAlign: TextAlign.center,
+                                  keyboardType: TextInputType.number,
                                 ),
-                                Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_Icon_ayabw92b_ON_TAP');
-                                      logFirebaseEvent('Icon_Custom-Action');
-                                      mostrarAgregarDuracion =
-                                          await actions.esconderFinalizacion();
+                              ),
+                              Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(),
+                                child: InkWell(
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_Icon_ayabw92b_ON_TAP');
+                                    logFirebaseEvent('Icon_Custom-Action');
+                                    mostrarAgregarDuracion =
+                                        await actions.esconderFinalizacion();
 
-                                      setState(() {});
-                                    },
-                                    child: Icon(
-                                      FFIcons.kasset20,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryColor,
-                                      size: 16,
-                                    ),
+                                    setState(() {});
+                                  },
+                                  child: Icon(
+                                    FFIcons.kasset20,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryColor,
+                                    size: 16,
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
+                        ),
                       ],
                     ),
                   ),
