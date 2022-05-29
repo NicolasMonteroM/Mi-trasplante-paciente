@@ -97,7 +97,8 @@ class _ContenidosWidgetState extends State<ContenidosWidget> {
                                   size: 24,
                                 ),
                                 onPressed: () async {
-                                  logFirebaseEvent('IconButton_ON_TAP');
+                                  logFirebaseEvent(
+                                      'CONTENIDOS_PAGE_asset31_ICON_ON_TAP');
                                   logFirebaseEvent('IconButton_Navigate-To');
                                   await Navigator.push(
                                     context,

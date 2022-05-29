@@ -512,7 +512,8 @@ class _CompletarRegistroWidgetState extends State<CompletarRegistroWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            logFirebaseEvent('Button-Personal-Info_ON_TAP');
+                            logFirebaseEvent(
+                                'COMPLETAR_REGISTRO_PAGE_Button-Personal-Info_ON_TAP');
                             logFirebaseEvent(
                                 'Button-Personal-Info_Backend-Call');
 

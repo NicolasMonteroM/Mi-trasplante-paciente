@@ -279,7 +279,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    logFirebaseEvent('Button_ON_TAP');
+                    logFirebaseEvent(
+                        'ONBOARDING_PAGE_REGISTRARSE_BUTTON_ON_TAP');
                     logFirebaseEvent('Button_Navigate-To');
                     await Navigator.push(
                       context,
@@ -312,7 +313,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 40),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    logFirebaseEvent('Button_ON_TAP');
+                    logFirebaseEvent(
+                        'ONBOARDING_PAGE_INICIAR_SESIÓN_BUTTON_ON_TAP');
                     logFirebaseEvent('Button_Navigate-To');
                     await Navigator.push(
                       context,

@@ -87,7 +87,8 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
                               size: 24,
                             ),
                             onPressed: () async {
-                              logFirebaseEvent('IconButton_ON_TAP');
+                              logFirebaseEvent(
+                                  'CREAR_CUENTA_PAGE_arrow_back_rounded_ICON_ON_TAP');
                               logFirebaseEvent('IconButton_Navigate-Back');
                               Navigator.pop(context);
                             },
@@ -513,6 +514,7 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
                             onTap: () => setState(
                               () => passwordVisibility = !passwordVisibility,
                             ),
+                            focusNode: FocusNode(skipTraversal: true),
                             child: Icon(
                               passwordVisibility
                                   ? Icons.visibility_outlined
@@ -586,6 +588,7 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
                               () => confirmPasswordVisibility =
                                   !confirmPasswordVisibility,
                             ),
+                            focusNode: FocusNode(skipTraversal: true),
                             child: Icon(
                               confirmPasswordVisibility
                                   ? Icons.visibility_outlined
@@ -613,7 +616,8 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
                               EdgeInsetsDirectional.fromSTEB(24, 24, 24, 16),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              logFirebaseEvent('Button-create-account_ON_TAP');
+                              logFirebaseEvent(
+                                  'CREAR_CUENTA_PAGE_Button-create-account_ON_TAP');
                               logFirebaseEvent('Button-create-account_Auth');
                               if (passwordController?.text !=
                                   confirmPasswordController?.text) {

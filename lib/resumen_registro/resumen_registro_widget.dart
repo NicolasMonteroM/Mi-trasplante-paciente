@@ -154,7 +154,7 @@ class _ResumenRegistroWidgetState extends State<ResumenRegistroWidget> {
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     logFirebaseEvent(
-                                                        'Button-Next_ON_TAP');
+                                                        'RESUMEN_REGISTRO_PAGE_Button-Next_ON_TAP');
                                                     logFirebaseEvent(
                                                         'Button-Next_Navigate-To');
                                                     await Navigator.push(

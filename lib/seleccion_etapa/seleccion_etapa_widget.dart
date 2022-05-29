@@ -96,7 +96,8 @@ class _SeleccionEtapaWidgetState extends State<SeleccionEtapaWidget> {
                                   size: 24,
                                 ),
                                 onPressed: () async {
-                                  logFirebaseEvent('IconButton_ON_TAP');
+                                  logFirebaseEvent(
+                                      'SELECCION_ETAPA_PAGE_arrow_back_rounded_ICON_ON_TAP');
                                   logFirebaseEvent('IconButton_Navigate-Back');
                                   Navigator.pop(context);
                                 },
@@ -223,7 +224,8 @@ class _SeleccionEtapaWidgetState extends State<SeleccionEtapaWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            logFirebaseEvent('Button-Stage_ON_TAP');
+                            logFirebaseEvent(
+                                'SELECCION_ETAPA_PAGE_Button-Stage_ON_TAP');
                             logFirebaseEvent('Button-Stage_Backend-Call');
 
                             final usersUpdateData = createUsersRecordData(

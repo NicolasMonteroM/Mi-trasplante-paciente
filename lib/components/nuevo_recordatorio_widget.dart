@@ -68,7 +68,8 @@ class _NuevoRecordatorioWidgetState extends State<NuevoRecordatorioWidget> {
                         size: 16,
                       ),
                       onPressed: () async {
-                        logFirebaseEvent('IconButton_ON_TAP');
+                        logFirebaseEvent(
+                            'NUEVO_RECORDATORIO_COMP_asset20_ICON_ON_TAP');
                         logFirebaseEvent('IconButton_Bottom-Sheet');
                         Navigator.pop(context);
                       },
@@ -81,7 +82,8 @@ class _NuevoRecordatorioWidgetState extends State<NuevoRecordatorioWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
               child: InkWell(
                 onTap: () async {
-                  logFirebaseEvent('Container_ON_TAP');
+                  logFirebaseEvent(
+                      'NUEVO_RECORDATORIO_COMP_Container_n1pt1zzn_ON_TAP');
                   logFirebaseEvent('Container_Navigate-To');
                   await Navigator.push(
                     context,

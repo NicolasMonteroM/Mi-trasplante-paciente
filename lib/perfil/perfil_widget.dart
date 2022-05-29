@@ -97,7 +97,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       logFirebaseEvent(
-                                          'fechaSelccionada_ON_TAP');
+                                          'PERFIL_PAGE_fechaSelccionada_ON_TAP');
                                       logFirebaseEvent(
                                           'fechaSelccionada_Date-Time-Picker');
                                       await DatePicker.showDatePicker(
@@ -461,7 +461,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                             children: [
                               InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('Text_ON_TAP');
+                                  logFirebaseEvent(
+                                      'PERFIL_PAGE_Text_3199m1ov_ON_TAP');
                                   logFirebaseEvent('Text_Auth');
                                   await signOut();
                                   await Navigator.pushAndRemoveUntil(

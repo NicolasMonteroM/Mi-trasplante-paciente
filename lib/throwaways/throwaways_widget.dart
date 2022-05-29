@@ -1,43 +1,43 @@
+import '../buscar/buscar_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
+import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../nuevo_medicamento_dosis/nuevo_medicamento_dosis_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NuevoMedicamentoFrecuenciaWidget extends StatefulWidget {
-  const NuevoMedicamentoFrecuenciaWidget({Key key}) : super(key: key);
+class ThrowawaysWidget extends StatefulWidget {
+  const ThrowawaysWidget({Key key}) : super(key: key);
 
   @override
-  _NuevoMedicamentoFrecuenciaWidgetState createState() =>
-      _NuevoMedicamentoFrecuenciaWidgetState();
+  _ThrowawaysWidgetState createState() => _ThrowawaysWidgetState();
 }
 
-class _NuevoMedicamentoFrecuenciaWidgetState
-    extends State<NuevoMedicamentoFrecuenciaWidget> {
-  DateTime datePicked1;
-  String numeroDeDosisValue;
-  String presentacionValue;
+class _ThrowawaysWidgetState extends State<ThrowawaysWidget> {
+  DateTime datePicked;
   String vecesAlDiaValue;
-  DateTime datePicked2;
   bool mostrarDuracion;
   TextEditingController alturaController;
   bool mostrarAgregarDuracion;
+  String radioButtonValue;
+  TextEditingController searchController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     alturaController = TextEditingController();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Nuevo_medicamento_frecuencia'});
+    searchController = TextEditingController();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Throwaways'});
   }
 
   @override
@@ -54,73 +54,6 @@ class _NuevoMedicamentoFrecuenciaWidgetState
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30,
-                              borderWidth: 1,
-                              buttonSize: 50,
-                              icon: Icon(
-                                Icons.arrow_back_rounded,
-                                color: Color(0xFF0F1113),
-                                size: 24,
-                              ),
-                              onPressed: () async {
-                                logFirebaseEvent(
-                                    'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_arrow_back_rounded_ICON_ON_TAP');
-                                logFirebaseEvent('IconButton_Navigate-Back');
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                            child: Text(
-                              'Regresar',
-                              style:
-                                  FlutterFlowTheme.of(context).title1.override(
-                                        fontFamily: 'Outfit',
-                                        color: Color(0xFF0F1113),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 24, 20, 16),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Frecuencia y dosis',
-                              style:
-                                  FlutterFlowTheme.of(context).title2.override(
-                                        fontFamily: 'Proxima nova',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        useGoogleFonts: false,
-                                      ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
               ),
               Expanded(
                 child: Container(
@@ -139,126 +72,6 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 8),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Dosis',
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Proxima nova',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            useGoogleFonts: false,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    decoration: BoxDecoration(),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: FlutterFlowDropDown(
-                                        initialOption: numeroDeDosisValue ??=
-                                            '1',
-                                        options: [
-                                          '1/4',
-                                          '1/3',
-                                          'Mitad',
-                                          '1',
-                                          '2',
-                                          '3',
-                                          '4',
-                                          '5',
-                                          '6',
-                                          '7',
-                                          '8'
-                                        ].toList(),
-                                        onChanged: (val) => setState(
-                                            () => numeroDeDosisValue = val),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 50,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Proxima nova',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.normal,
-                                              useGoogleFonts: false,
-                                            ),
-                                        fillColor: Colors.white,
-                                        elevation: 2,
-                                        borderColor: Color(0xFFC9C9C9),
-                                        borderWidth: 0,
-                                        borderRadius: 12,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
-                                            12, 4, 12, 4),
-                                        hidesUnderline: true,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(),
-                                  ),
-                                  Container(
-                                    width: 200,
-                                    decoration: BoxDecoration(),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: FlutterFlowDropDown(
-                                        initialOption: presentacionValue ??=
-                                            'Pastilla',
-                                        options: functions
-                                            .presentacionMedicamento(
-                                                numeroDeDosisValue)
-                                            .toList(),
-                                        onChanged: (val) => setState(
-                                            () => presentacionValue = val),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 50,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Proxima nova',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.normal,
-                                              useGoogleFonts: false,
-                                            ),
-                                        fillColor: Colors.white,
-                                        elevation: 2,
-                                        borderColor: Color(0xFFC9C9C9),
-                                        borderWidth: 0,
-                                        borderRadius: 12,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
-                                            12, 4, 12, 4),
-                                        hidesUnderline: true,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
                         Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
@@ -371,96 +184,6 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                               EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Hora de toma',
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Proxima nova',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            useGoogleFonts: false,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_seleccinar-fecha_ON_TAP');
-                                    logFirebaseEvent(
-                                        'seleccinar-fecha_Date-Time-Picker');
-                                    await DatePicker.showTimePicker(
-                                      context,
-                                      showTitleActions: true,
-                                      onConfirm: (date) {
-                                        setState(() => datePicked1 = date);
-                                      },
-                                      currentTime: getCurrentTimestamp,
-                                      locale: LocaleType.values.firstWhere(
-                                        (l) =>
-                                            l.name ==
-                                            FFLocalizations.of(context)
-                                                .languageCode,
-                                        orElse: null,
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    width: 90,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .tertiaryColor,
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    4, 0, 4, 0),
-                                            child: Text(
-                                              dateTimeFormat('jm', datePicked1),
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1,
-                                            ),
-                                          ),
-                                        ),
-                                        Divider(
-                                          thickness: 2,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
@@ -487,14 +210,14 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                                 child: InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_fechadeinicio_ON_TAP');
+                                        'THROWAWAYS_PAGE_fechadeinicio_ON_TAP');
                                     logFirebaseEvent(
                                         'fechadeinicio_Date-Time-Picker');
                                     await DatePicker.showDatePicker(
                                       context,
                                       showTitleActions: true,
                                       onConfirm: (date) {
-                                        setState(() => datePicked2 = date);
+                                        setState(() => datePicked = date);
                                       },
                                       currentTime: getCurrentTimestamp,
                                       minTime: getCurrentTimestamp,
@@ -532,7 +255,7 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                                               Text(
                                                 valueOrDefault<String>(
                                                   dateTimeFormat(
-                                                      'yMd', datePicked2),
+                                                      'yMd', datePicked),
                                                   'Seleccionar',
                                                 ),
                                                 style:
@@ -573,7 +296,7 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                                       child: InkWell(
                                         onTap: () async {
                                           logFirebaseEvent(
-                                              'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_Row_xlgzydkx_ON_TAP');
+                                              'THROWAWAYS_PAGE_Row_d90dfusw_ON_TAP');
                                           logFirebaseEvent('Row_Custom-Action');
                                           mostrarDuracion = await actions
                                               .mostrarFinalizacion();
@@ -736,7 +459,7 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                                   child: InkWell(
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_Icon_ayabw92b_ON_TAP');
+                                          'THROWAWAYS_PAGE_Icon_1eta5e6e_ON_TAP');
                                       logFirebaseEvent('Icon_Custom-Action');
                                       mostrarAgregarDuracion =
                                           await actions.esconderFinalizacion();
@@ -754,6 +477,183 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                               ],
                             ),
                           ),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 8, 0),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          child: TextFormField(
+                                            controller: searchController,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              'searchController',
+                                              Duration(milliseconds: 2000),
+                                              () => setState(() {}),
+                                            ),
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Proxima nova',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                              hintStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Proxima nova',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0xFFC9C9C9),
+                                                  width: 0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0xFFC9C9C9),
+                                                  width: 0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              filled: true,
+                                              fillColor: Colors.white,
+                                              contentPadding:
+                                                  EdgeInsetsDirectional
+                                                      .fromSTEB(20, 24, 24, 24),
+                                              suffixIcon: searchController
+                                                      .text.isNotEmpty
+                                                  ? InkWell(
+                                                      onTap: () => setState(
+                                                        () => searchController
+                                                            ?.clear(),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.clear,
+                                                        color:
+                                                            Color(0xFFC9C9C9),
+                                                        size: 22,
+                                                      ),
+                                                    )
+                                                  : null,
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Proxima nova',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(),
+                                      child: FlutterFlowIconButton(
+                                        borderColor:
+                                            FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
+                                        borderRadius: 16,
+                                        borderWidth: 0,
+                                        buttonSize: 50,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
+                                        icon: Icon(
+                                          FFIcons.kasset31,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                          size: 24,
+                                        ),
+                                        onPressed: () async {
+                                          logFirebaseEvent(
+                                              'THROWAWAYS_PAGE_asset31_ICON_ON_TAP');
+                                          logFirebaseEvent(
+                                              'IconButton_Navigate-To');
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .rightToLeft,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 300),
+                                              child: BuscarWidget(),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(),
+                                child: FlutterFlowRadioButton(
+                                  options: ['Option 1'].toList(),
+                                  onChanged: (value) {
+                                    setState(() => radioButtonValue = value);
+                                  },
+                                  optionHeight: 25,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Proxima nova',
+                                        color: Colors.black,
+                                        useGoogleFonts: false,
+                                      ),
+                                  buttonPosition: RadioButtonPosition.left,
+                                  direction: Axis.vertical,
+                                  radioButtonColor: Colors.blue,
+                                  inactiveRadioButtonColor: Color(0x8A000000),
+                                  toggleable: false,
+                                  horizontalAlignment: WrapAlignment.start,
+                                  verticalAlignment: WrapCrossAlignment.start,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -803,8 +703,7 @@ class _NuevoMedicamentoFrecuenciaWidgetState
                       padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          logFirebaseEvent(
-                              'NUEVO_MEDICAMENTO_FRECUENCIA_PAGE_Continue_ON_TAP');
+                          logFirebaseEvent('THROWAWAYS_PAGE_Continue_ON_TAP');
                           logFirebaseEvent('Continue_Navigate-To');
                           await Navigator.push(
                             context,

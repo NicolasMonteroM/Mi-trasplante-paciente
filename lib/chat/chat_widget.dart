@@ -100,7 +100,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                               ),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  logFirebaseEvent('fechaSelccionada_ON_TAP');
+                                  logFirebaseEvent(
+                                      'CHAT_PAGE_fechaSelccionada_ON_TAP');
                                   logFirebaseEvent(
                                       'fechaSelccionada_Date-Time-Picker');
                                   await DatePicker.showDatePicker(

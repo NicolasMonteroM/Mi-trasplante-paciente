@@ -35,7 +35,7 @@ class _AgendaWidgetState extends State<AgendaWidget> {
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          logFirebaseEvent('FloatingActionButton_ON_TAP');
+          logFirebaseEvent('AGENDA_PAGE_FloatingActionButton_dhsjlry7_ON_TAP');
           logFirebaseEvent('FloatingActionButton_Bottom-Sheet');
           await showModalBottomSheet(
             isScrollControlled: true,

@@ -63,7 +63,8 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                                 size: 24,
                               ),
                               onPressed: () async {
-                                logFirebaseEvent('IconButton_ON_TAP');
+                                logFirebaseEvent(
+                                    'BUSCAR_PAGE_arrow_back_rounded_ICON_ON_TAP');
                                 logFirebaseEvent('IconButton_Navigate-Back');
                                 Navigator.pop(context);
                               },
@@ -188,7 +189,8 @@ class _BuscarWidgetState extends State<BuscarWidget> {
                               size: 24,
                             ),
                             onPressed: () async {
-                              logFirebaseEvent('IconButton_ON_TAP');
+                              logFirebaseEvent(
+                                  'BUSCAR_PAGE_arrow_forward_rounded_ICON_ON_TAP');
                               // algolia_search
                               logFirebaseEvent('IconButton_algolia_search');
                               setState(() => algoliaSearchResults = null);

@@ -2,6 +2,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../nuevo_medicamento_adicional/nuevo_medicamento_adicional_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -61,7 +62,8 @@ class _NuevoMedicamentoDosisWidgetState
                                 size: 24,
                               ),
                               onPressed: () async {
-                                logFirebaseEvent('IconButton_ON_TAP');
+                                logFirebaseEvent(
+                                    'NUEVO_MEDICAMENTO_DOSIS_PAGE_arrow_back_rounded_ICON_ON_TAP');
                                 logFirebaseEvent('IconButton_Navigate-Back');
                                 Navigator.pop(context);
                               },
@@ -124,7 +126,7 @@ class _NuevoMedicamentoDosisWidgetState
                       children: [
                         Padding(
                           padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                              EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -294,8 +296,17 @@ class _NuevoMedicamentoDosisWidgetState
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Continue pressed ...');
+                        onPressed: () async {
+                          logFirebaseEvent(
+                              'NUEVO_MEDICAMENTO_DOSIS_PAGE_Continue_ON_TAP');
+                          logFirebaseEvent('Continue_Navigate-To');
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  NuevoMedicamentoAdicionalWidget(),
+                            ),
+                          );
                         },
                         text: 'Continuar',
                         options: FFButtonOptions(
