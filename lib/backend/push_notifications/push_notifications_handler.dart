@@ -84,13 +84,14 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Completar_registro': (data) async => CompletarRegistroWidget(),
   'Seleccion_etapa': (data) async => SeleccionEtapaWidget(),
   'Resumen_registro': (data) async => ResumenRegistroWidget(),
-  'Buscar': (data) async => BuscarWidget(),
+  'Contenidos': (data) async => NavBarPage(initialPage: 'Contenidos'),
   'Agenda': (data) async => NavBarPage(initialPage: 'Agenda'),
   'Indicadores': (data) async => NavBarPage(initialPage: 'Indicadores'),
   'Perfil': (data) async => NavBarPage(initialPage: 'Perfil'),
   'Peso_corporal': (data) async => PesoCorporalWidget(),
-  'Contenido_ref': (data) async => ContenidoRefWidget(),
-  'Contenidos': (data) async => NavBarPage(initialPage: 'Contenidos'),
+  'Contenido_ref': (data) async => ContenidoRefWidget(
+        contenidoRef: getParameter(data, 'contenidoRef'),
+      ),
   'Nuevo_medicamento': (data) async => NuevoMedicamentoWidget(),
   'Nuevo_medicamento_2': (data) async => NuevoMedicamento2Widget(
         nombreParametro: getParameter(data, 'nombreParametro'),

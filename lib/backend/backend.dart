@@ -4,10 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../flutter_flow/flutter_flow_util.dart';
 
-import 'schema/contenidos_record.dart';
 import 'schema/users_record.dart';
 import 'schema/recordatorios_record.dart';
 import 'schema/indicadores_record.dart';
+import 'schema/contenidos_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -15,52 +15,10 @@ export 'package:cloud_firestore/cloud_firestore.dart';
 export 'schema/index.dart';
 export 'schema/serializers.dart';
 
-export 'schema/contenidos_record.dart';
 export 'schema/users_record.dart';
 export 'schema/recordatorios_record.dart';
 export 'schema/indicadores_record.dart';
-
-/// Functions to query ContenidosRecords (as a Stream and as a Future).
-Stream<List<ContenidosRecord>> queryContenidosRecord({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      ContenidosRecord.collection,
-      ContenidosRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<ContenidosRecord>> queryContenidosRecordOnce({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      ContenidosRecord.collection,
-      ContenidosRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<ContenidosRecord>> queryContenidosRecordPage({
-  Query Function(Query) queryBuilder,
-  DocumentSnapshot nextPageMarker,
-  int pageSize,
-  bool isStream,
-}) =>
-    queryCollectionPage(
-      ContenidosRecord.collection,
-      ContenidosRecord.serializer,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    );
+export 'schema/contenidos_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -182,6 +140,48 @@ Future<FFFirestorePage<IndicadoresRecord>> queryIndicadoresRecordPage({
     queryCollectionPage(
       IndicadoresRecord.collection,
       IndicadoresRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query ContenidosRecords (as a Stream and as a Future).
+Stream<List<ContenidosRecord>> queryContenidosRecord({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ContenidosRecord.collection,
+      ContenidosRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ContenidosRecord>> queryContenidosRecordOnce({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ContenidosRecord.collection,
+      ContenidosRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<ContenidosRecord>> queryContenidosRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      ContenidosRecord.collection,
+      ContenidosRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
