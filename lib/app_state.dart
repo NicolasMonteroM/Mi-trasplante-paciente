@@ -19,6 +19,12 @@ class FFAppState {
   SharedPreferences prefs;
 
   bool showFullList = false;
+
+  bool showMedicamentosList = false;
+
+  bool showFechaFinalizacion = false;
+
+  DateTime rangoFechaAgenda;
 }
 
 LatLng _latLngFromString(String val) {

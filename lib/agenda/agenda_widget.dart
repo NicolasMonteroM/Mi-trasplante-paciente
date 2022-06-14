@@ -1,7 +1,13 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../backend/push_notifications/push_notifications_util.dart';
+import '../components/cita_ref_widget.dart';
+import '../components/lista_vacia_widget.dart';
+import '../components/medicamento_ref_widget.dart';
+import '../components/medicion_liquidos_ref_widget.dart';
 import '../components/nuevo_recordatorio_widget.dart';
+import '../components/peso_corporal_ref_widget.dart';
+import '../components/presion_arteria_ref_widget.dart';
+import '../components/ritmo_cardiaco_ref_widget.dart';
 import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -28,226 +34,381 @@ class _AgendaWidgetState extends State<AgendaWidget> {
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
     );
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Agenda'});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          logFirebaseEvent('AGENDA_PAGE_FloatingActionButton_dhsjlry7_ON_TAP');
-          logFirebaseEvent('FloatingActionButton_Bottom-Sheet');
-          await showModalBottomSheet(
-            isScrollControlled: true,
-            backgroundColor: Colors.transparent,
-            context: context,
-            builder: (context) {
-              return Padding(
-                padding: MediaQuery.of(context).viewInsets,
-                child: Container(
-                  height: 330,
-                  child: NuevoRecordatorioWidget(),
-                ),
+    return StreamBuilder<UsersRecord>(
+      stream: UsersRecord.getDocument(currentUserReference),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Center(
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: SpinKitSquareCircle(
+                color: FlutterFlowTheme.of(context).primaryColor,
+                size: 50,
+              ),
+            ),
+          );
+        }
+        final agendaUsersRecord = snapshot.data;
+        return Scaffold(
+          key: scaffoldKey,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              await showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) {
+                  return Padding(
+                    padding: MediaQuery.of(context).viewInsets,
+                    child: Container(
+                      height: 330,
+                      child: NuevoRecordatorioWidget(),
+                    ),
+                  );
+                },
               );
             },
-          );
-        },
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        elevation: 8,
-        child: Icon(
-          Icons.add,
-          color: FlutterFlowTheme.of(context).primaryBackground,
-          size: 24,
-        ),
-      ),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                width: 100,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).tertiaryColor,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 24,
-                      color: Color(0x18414141),
-                    )
-                  ],
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12),
-                    topLeft: Radius.circular(0),
-                    topRight: Radius.circular(0),
-                  ),
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                  child: FlutterFlowCalendar(
-                    color: FlutterFlowTheme.of(context).primaryColor,
-                    iconColor: Color(0xFFC6CADB),
-                    weekFormat: true,
-                    weekStartsMonday: true,
-                    initialDate: getCurrentTimestamp,
-                    onChange: (DateTimeRange newSelectedDate) {
-                      setState(() => calendarioSelectedDay = newSelectedDate);
-                    },
-                    titleStyle: FlutterFlowTheme.of(context).title3,
-                    dayOfWeekStyle: FlutterFlowTheme.of(context).bodyText2,
-                    dateStyle: FlutterFlowTheme.of(context).subtitle2,
-                    selectedDateStyle:
-                        FlutterFlowTheme.of(context).bodyText1.override(
+            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+            elevation: 8,
+            child: Icon(
+              Icons.add,
+              color: FlutterFlowTheme.of(context).primaryBackground,
+              size: 24,
+            ),
+          ),
+          body: SafeArea(
+            child: GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).tertiaryColor,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 24,
+                          color: Color(0x18414141),
+                        )
+                      ],
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12),
+                        topLeft: Radius.circular(0),
+                        topRight: Radius.circular(0),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      child: FlutterFlowCalendar(
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        iconColor: Color(0xFFC6CADB),
+                        weekFormat: true,
+                        weekStartsMonday: true,
+                        initialDate: getCurrentTimestamp,
+                        onChange: (DateTimeRange newSelectedDate) {
+                          setState(
+                              () => calendarioSelectedDay = newSelectedDate);
+                        },
+                        titleStyle: FlutterFlowTheme.of(context).title3,
+                        dayOfWeekStyle: FlutterFlowTheme.of(context).bodyText2,
+                        dateStyle: FlutterFlowTheme.of(context).subtitle2,
+                        selectedDateStyle: FlutterFlowTheme.of(context)
+                            .bodyText1
+                            .override(
                               fontFamily: 'Proxima nova',
                               color: FlutterFlowTheme.of(context).tertiaryColor,
                               fontWeight: FontWeight.w600,
                               useGoogleFonts: false,
                             ),
-                    inactiveDateStyle:
-                        FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Proxima nova',
-                              fontWeight: FontWeight.w600,
-                              useGoogleFonts: false,
-                            ),
-                    locale: FFLocalizations.of(context).languageCode,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 16),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(),
-                            child: Text(
-                              functions.fechaSeleccionada(
-                                  calendarioSelectedDay.start),
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                            ),
-                          ),
-                        ],
+                        inactiveDateStyle:
+                            FlutterFlowTheme.of(context).bodyText1.override(
+                                  fontFamily: 'Proxima nova',
+                                  fontWeight: FontWeight.w600,
+                                  useGoogleFonts: false,
+                                ),
+                        locale: FFLocalizations.of(context).languageCode,
                       ),
                     ),
-                    Expanded(
-                      child: Container(
-                        height: 100,
-                        decoration: BoxDecoration(),
-                        child: StreamBuilder<List<RecordatoriosRecord>>(
-                          stream: queryRecordatoriosRecord(
-                            queryBuilder: (recordatoriosRecord) =>
-                                recordatoriosRecord.orderBy('hora'),
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: SpinKitSquareCircle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 50,
-                                  ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 24, 16, 16),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(),
+                                child: Text(
+                                  functions.fechaSeleccionada(
+                                      calendarioSelectedDay?.start),
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
-                              );
-                            }
-                            List<RecordatoriosRecord>
-                                listViewRecordatoriosRecordList = snapshot.data;
-                            return ListView.builder(
-                              padding: EdgeInsets.zero,
-                              scrollDirection: Axis.vertical,
-                              itemCount: listViewRecordatoriosRecordList.length,
-                              itemBuilder: (context, listViewIndex) {
-                                final listViewRecordatoriosRecord =
-                                    listViewRecordatoriosRecordList[
-                                        listViewIndex];
-                                return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16, 0, 16, 16),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'AGENDA_PAGE_Container_7pgr1b4v_ON_TAP');
-                                      logFirebaseEvent(
-                                          'Container_Trigger-Push-Notification');
-                                      triggerPushNotification(
-                                        notificationTitle:
-                                            'Toma de medicamento',
-                                        notificationText:
-                                            'Recuerda tomar tu medicamento',
-                                        scheduledTime:
-                                            listViewRecordatoriosRecord.hora,
-                                        notificationSound: 'default',
-                                        userRefs: [currentUserReference],
-                                        initialPageName: 'Agenda',
-                                        parameterData: {},
-                                      );
-                                    },
-                                    child: Container(
-                                      width: 100,
-                                      decoration: BoxDecoration(
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: 100,
+                            decoration: BoxDecoration(),
+                            child: StreamBuilder<List<RecordatoriosRecord>>(
+                              stream: queryRecordatoriosRecord(
+                                queryBuilder: (recordatoriosRecord) =>
+                                    recordatoriosRecord
+                                        .where('usuario_asignado',
+                                            arrayContains: currentUserReference)
+                                        .orderBy('hora'),
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: SpinKitSquareCircle(
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 24,
-                                            color: Color(0x1A414141),
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.circular(12),
+                                            .primaryColor,
+                                        size: 50,
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16, 16, 16, 16),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    color: Color(0xFFEEEEEE),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
+                                    ),
+                                  );
+                                }
+                                List<RecordatoriosRecord>
+                                    listViewRecordatoriosRecordList =
+                                    snapshot.data;
+                                if (listViewRecordatoriosRecordList.isEmpty) {
+                                  return ListaVaciaWidget(
+                                    info:
+                                        'No tienes recordatorios para este día',
+                                  );
+                                }
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount:
+                                      listViewRecordatoriosRecordList.length,
+                                  itemBuilder: (context, listViewIndex) {
+                                    final listViewRecordatoriosRecord =
+                                        listViewRecordatoriosRecordList[
+                                            listViewIndex];
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 16, 16),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          if ((listViewRecordatoriosRecord
+                                                  .tipo) ==
+                                              'Medicamento') {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              context: context,
+                                              builder: (context) {
+                                                return Padding(
+                                                  padding:
+                                                      MediaQuery.of(context)
+                                                          .viewInsets,
+                                                  child: MedicamentoRefWidget(
+                                                    recordatorio:
+                                                        listViewRecordatoriosRecord
+                                                            .reference,
                                                   ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                8, 4, 8, 4),
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                      ),
-                                                      child: Text(
-                                                        dateTimeFormat(
-                                                            'jm',
+                                                );
+                                              },
+                                            );
+                                          } else {
+                                            if ((listViewRecordatoriosRecord
+                                                    .tipo) ==
+                                                'Indicador') {
+                                              if ((listViewRecordatoriosRecord
+                                                      .tipoIndicador) ==
+                                                  'Medición de líquidos') {
+                                                await showModalBottomSheet(
+                                                  isScrollControlled: true,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return Padding(
+                                                      padding:
+                                                          MediaQuery.of(context)
+                                                              .viewInsets,
+                                                      child:
+                                                          MedicionLiquidosRefWidget(
+                                                        recordatorio:
                                                             listViewRecordatoriosRecord
-                                                                .hora),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                                .reference,
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              } else {
+                                                if ((listViewRecordatoriosRecord
+                                                        .tipoIndicador) ==
+                                                    'Peso Corporal') {
+                                                  await showModalBottomSheet(
+                                                    isScrollControlled: true,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return Padding(
+                                                        padding: MediaQuery.of(
+                                                                context)
+                                                            .viewInsets,
+                                                        child:
+                                                            PesoCorporalRefWidget(
+                                                          recordatorio:
+                                                              listViewRecordatoriosRecord
+                                                                  .reference,
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                } else {
+                                                  if ((listViewRecordatoriosRecord
+                                                          .tipoIndicador) ==
+                                                      'Presión arterial') {
+                                                    await showModalBottomSheet(
+                                                      isScrollControlled: true,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return Padding(
+                                                          padding:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .viewInsets,
+                                                          child:
+                                                              PresionArteriaRefWidget(
+                                                            recordatorio:
+                                                                listViewRecordatoriosRecord
+                                                                    .reference,
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  } else {
+                                                    await showModalBottomSheet(
+                                                      isScrollControlled: true,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return Padding(
+                                                          padding:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .viewInsets,
+                                                          child:
+                                                              RitmoCardiacoRefWidget(
+                                                            recordatorio:
+                                                                listViewRecordatoriosRecord
+                                                                    .reference,
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  }
+                                                }
+                                              }
+                                            } else {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                context: context,
+                                                builder: (context) {
+                                                  return Padding(
+                                                    padding:
+                                                        MediaQuery.of(context)
+                                                            .viewInsets,
+                                                    child: CitaRefWidget(
+                                                      recordatorio:
+                                                          listViewRecordatoriosRecord
+                                                              .reference,
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            }
+                                          }
+                                        },
+                                        child: Container(
+                                          width: 100,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                blurRadius: 24,
+                                                color: Color(0x1A414141),
+                                              )
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16, 16, 16, 16),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xFFEEEEEE),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8, 4, 8, 4),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryBackground,
+                                                          ),
+                                                          child: Text(
+                                                            dateTimeFormat(
+                                                                'jm',
+                                                                listViewRecordatoriosRecord
+                                                                    .hora),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .bodyText1
                                                                 .override(
                                                                   fontFamily:
@@ -258,194 +419,202 @@ class _AgendaWidgetState extends State<AgendaWidget> {
                                                                   useGoogleFonts:
                                                                       false,
                                                                 ),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ),
-                                                Icon(
-                                                  FFIcons.kasset26,
-                                                  color: Color(0xFFC6CADB),
-                                                  size: 20,
-                                                ),
-                                              ],
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 12, 0, 0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.stretch,
-                                                children: [
-                                                  Container(
-                                                    decoration: BoxDecoration(),
-                                                    child: Text(
-                                                      listViewRecordatoriosRecord
-                                                          .nombre,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle1,
+                                                    Icon(
+                                                      FFIcons.kasset26,
+                                                      color: Color(0xFFC6CADB),
+                                                      size: 20,
                                                     ),
-                                                  ),
-                                                  if ((listViewRecordatoriosRecord
-                                                          .indicacionesDeConsumo) !=
-                                                      '')
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 4, 0, 0),
-                                                      child: Container(
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 12, 0, 0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .stretch,
+                                                    children: [
+                                                      Container(
                                                         decoration:
                                                             BoxDecoration(),
                                                         child: Text(
                                                           listViewRecordatoriosRecord
-                                                              .indicacionesDeConsumo,
+                                                              .nombre,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText2,
+                                                              .subtitle1,
                                                         ),
                                                       ),
-                                                    ),
-                                                ],
-                                              ),
-                                            ),
-                                            if (listViewRecordatoriosRecord
-                                                    .tomaDefinida ??
-                                                true)
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 4, 0, 0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .stretch,
-                                                  children: [
-                                                    if (listViewRecordatoriosRecord
-                                                            .tomaSaltada ??
-                                                        true)
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Container(
+                                                      if ((listViewRecordatoriosRecord
+                                                              .indicacionesDeConsumo) !=
+                                                          '')
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      4, 0, 0),
+                                                          child: Container(
                                                             decoration:
                                                                 BoxDecoration(),
                                                             child: Text(
-                                                              'Tomada saltada',
+                                                              listViewRecordatoriosRecord
+                                                                  .indicacionesDeConsumo,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyText2
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Proxima nova',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .negativeFeedback,
-                                                                    useGoogleFonts:
-                                                                        false,
-                                                                  ),
+                                                                  .bodyText2,
                                                             ),
                                                           ),
-                                                          Container(
-                                                            width: 24,
-                                                            height: 24,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .negativeFeedback,
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                            ),
-                                                            child: Icon(
-                                                              FFIcons.kasset20,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .tertiaryColor,
-                                                              size: 16,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    if (!(listViewRecordatoriosRecord
-                                                            .tomaSaltada) ??
-                                                        true)
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Container(
-                                                            decoration:
-                                                                BoxDecoration(),
-                                                            child: Text(
-                                                              'Tomada a las ${dateTimeFormat('jm', listViewRecordatoriosRecord.hora)}',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText2
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Proxima nova',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .positiveFeedback,
-                                                                    useGoogleFonts:
-                                                                        false,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            width: 24,
-                                                            height: 24,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .positiveFeedback,
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                            ),
-                                                            child: Icon(
-                                                              FFIcons.kasset17,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .tertiaryColor,
-                                                              size: 16,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                  ],
+                                                        ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                          ],
+                                                if (listViewRecordatoriosRecord
+                                                        .tomaDefinida ??
+                                                    true)
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 4, 0, 0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .stretch,
+                                                      children: [
+                                                        if (listViewRecordatoriosRecord
+                                                                .tomaSaltada ??
+                                                            true)
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Container(
+                                                                decoration:
+                                                                    BoxDecoration(),
+                                                                child: Text(
+                                                                  'Tomada saltada',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Proxima nova',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .negativeFeedback,
+                                                                        useGoogleFonts:
+                                                                            false,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                width: 24,
+                                                                height: 24,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .negativeFeedback,
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                ),
+                                                                child: Icon(
+                                                                  FFIcons
+                                                                      .kasset20,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiaryColor,
+                                                                  size: 16,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        if (!(listViewRecordatoriosRecord
+                                                                .tomaSaltada) ??
+                                                            true)
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Container(
+                                                                decoration:
+                                                                    BoxDecoration(),
+                                                                child: Text(
+                                                                  'Tomada a las ${dateTimeFormat('jm', listViewRecordatoriosRecord.hora)}',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Proxima nova',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .positiveFeedback,
+                                                                        useGoogleFonts:
+                                                                            false,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                width: 24,
+                                                                height: 24,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .positiveFeedback,
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                ),
+                                                                child: Icon(
+                                                                  FFIcons
+                                                                      .kasset17,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiaryColor,
+                                                                  size: 16,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
+                                    );
+                                  },
                                 );
                               },
-                            );
-                          },
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

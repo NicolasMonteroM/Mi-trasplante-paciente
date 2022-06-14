@@ -16,12 +16,6 @@ abstract class RecordatoriosRecord
   String get indicacionesDeConsumo;
 
   @nullable
-  String get nombre;
-
-  @nullable
-  String get tipo;
-
-  @nullable
   DateTime get hora;
 
   @nullable
@@ -36,31 +30,24 @@ abstract class RecordatoriosRecord
   DateTime get fecha;
 
   @nullable
-  DateTime get fechaInicio;
-
-  @nullable
-  DateTime get fechaFinalizacion;
-
-  @nullable
-  bool get existeFinalizacion;
-
-  @nullable
   String get imagen;
 
   @nullable
-  String get dosis;
+  DocumentReference get medicamento;
 
   @nullable
-  String get repeticiones;
+  String get nombre;
 
   @nullable
-  String get presentacion;
+  @BuiltValueField(wireName: 'usuario_asignado')
+  BuiltList<DocumentReference> get usuarioAsignado;
 
   @nullable
-  String get concentracion;
+  String get tipo;
 
   @nullable
-  String get repeticionesP2;
+  @BuiltValueField(wireName: 'tipo_indicador')
+  String get tipoIndicador;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -68,17 +55,13 @@ abstract class RecordatoriosRecord
 
   static void _initializeBuilder(RecordatoriosRecordBuilder builder) => builder
     ..indicacionesDeConsumo = ''
-    ..nombre = ''
-    ..tipo = ''
     ..tomaDefinida = false
     ..tomaSaltada = false
-    ..existeFinalizacion = false
     ..imagen = ''
-    ..dosis = ''
-    ..repeticiones = ''
-    ..presentacion = ''
-    ..concentracion = ''
-    ..repeticionesP2 = '';
+    ..nombre = ''
+    ..usuarioAsignado = ListBuilder()
+    ..tipo = ''
+    ..tipoIndicador = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('recordatorios');
@@ -104,38 +87,27 @@ abstract class RecordatoriosRecord
 
 Map<String, dynamic> createRecordatoriosRecordData({
   String indicacionesDeConsumo,
-  String nombre,
-  String tipo,
   DateTime hora,
   bool tomaDefinida,
   bool tomaSaltada,
   DateTime fecha,
-  DateTime fechaInicio,
-  DateTime fechaFinalizacion,
-  bool existeFinalizacion,
   String imagen,
-  String dosis,
-  String repeticiones,
-  String presentacion,
-  String concentracion,
-  String repeticionesP2,
+  DocumentReference medicamento,
+  String nombre,
+  String tipo,
+  String tipoIndicador,
 }) =>
     serializers.toFirestore(
         RecordatoriosRecord.serializer,
         RecordatoriosRecord((r) => r
           ..indicacionesDeConsumo = indicacionesDeConsumo
-          ..nombre = nombre
-          ..tipo = tipo
           ..hora = hora
           ..tomaDefinida = tomaDefinida
           ..tomaSaltada = tomaSaltada
           ..fecha = fecha
-          ..fechaInicio = fechaInicio
-          ..fechaFinalizacion = fechaFinalizacion
-          ..existeFinalizacion = existeFinalizacion
           ..imagen = imagen
-          ..dosis = dosis
-          ..repeticiones = repeticiones
-          ..presentacion = presentacion
-          ..concentracion = concentracion
-          ..repeticionesP2 = repeticionesP2));
+          ..medicamento = medicamento
+          ..nombre = nombre
+          ..usuarioAsignado = null
+          ..tipo = tipo
+          ..tipoIndicador = tipoIndicador));

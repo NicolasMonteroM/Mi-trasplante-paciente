@@ -4,6 +4,16 @@ import 'users_record.dart';
 import 'recordatorios_record.dart';
 import 'indicadores_record.dart';
 import 'contenidos_record.dart';
+import 'chatbot_info_record.dart';
+import 'categorias_record.dart';
+import 'medicamento_formas_record.dart';
+import 'medicamentos_record.dart';
+import 'esquema_medicamento_record.dart';
+import 'citas_asignadas_record.dart';
+import 'lugares_record.dart';
+import 'profesionales_record.dart';
+import 'tipos_indicadores_record.dart';
+import 'esquema_indicador_record.dart';
 
 import 'index.dart';
 
@@ -19,6 +29,16 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   RecordatoriosRecord,
   IndicadoresRecord,
   ContenidosRecord,
+  ChatbotInfoRecord,
+  CategoriasRecord,
+  MedicamentoFormasRecord,
+  MedicamentosRecord,
+  EsquemaMedicamentoRecord,
+  CitasAsignadasRecord,
+  LugaresRecord,
+  ProfesionalesRecord,
+  TiposIndicadoresRecord,
+  EsquemaIndicadorRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

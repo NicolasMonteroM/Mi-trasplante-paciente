@@ -40,8 +40,6 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
     mailController = TextEditingController();
     passwordController = TextEditingController();
     passwordVisibility = false;
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Crear_cuenta'});
   }
 
   @override
@@ -87,9 +85,6 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
                               size: 24,
                             ),
                             onPressed: () async {
-                              logFirebaseEvent(
-                                  'CREAR_CUENTA_PAGE_arrow_back_rounded_ICON_ON_TAP');
-                              logFirebaseEvent('IconButton_Navigate-Back');
                               Navigator.pop(context);
                             },
                           ),
@@ -301,7 +296,7 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
                             ),
                             child: FlutterFlowDropDown(
                               initialOption: documentTypeValue ??= 'C.C',
-                              options: ['C.C', 'T.I'].toList(),
+                              options: ['C.C', 'T.I'],
                               onChanged: (val) =>
                                   setState(() => documentTypeValue = val),
                               width: 180,
@@ -616,9 +611,6 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
                               EdgeInsetsDirectional.fromSTEB(24, 24, 24, 16),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              logFirebaseEvent(
-                                  'CREAR_CUENTA_PAGE_Button-create-account_ON_TAP');
-                              logFirebaseEvent('Button-create-account_Auth');
                               if (passwordController?.text !=
                                   confirmPasswordController?.text) {
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -651,8 +643,6 @@ class _CrearCuentaWidgetState extends State<CrearCuentaWidget> {
                                   .doc(user.uid)
                                   .update(usersCreateData);
 
-                              logFirebaseEvent(
-                                  'Button-create-account_Navigate-To');
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 PageTransition(

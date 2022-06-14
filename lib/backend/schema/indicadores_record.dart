@@ -25,13 +25,27 @@ abstract class IndicadoresRecord
   String get anotacion;
 
   @nullable
+  @BuiltValueField(wireName: 'usuario_asignado')
+  BuiltList<DocumentReference> get usuarioAsignado;
+
+  @nullable
+  @BuiltValueField(wireName: 'listado_recordatorio')
+  BuiltList<DocumentReference> get listadoRecordatorio;
+
+  @nullable
+  int get registroInt;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(IndicadoresRecordBuilder builder) => builder
     ..tipo = ''
     ..registro = ''
-    ..anotacion = '';
+    ..anotacion = ''
+    ..usuarioAsignado = ListBuilder()
+    ..listadoRecordatorio = ListBuilder()
+    ..registroInt = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('indicadores');
@@ -59,6 +73,7 @@ Map<String, dynamic> createIndicadoresRecordData({
   String registro,
   DateTime fechaDeRegistro,
   String anotacion,
+  int registroInt,
 }) =>
     serializers.toFirestore(
         IndicadoresRecord.serializer,
@@ -66,4 +81,7 @@ Map<String, dynamic> createIndicadoresRecordData({
           ..tipo = tipo
           ..registro = registro
           ..fechaDeRegistro = fechaDeRegistro
-          ..anotacion = anotacion));
+          ..anotacion = anotacion
+          ..usuarioAsignado = null
+          ..listadoRecordatorio = null
+          ..registroInt = registroInt));

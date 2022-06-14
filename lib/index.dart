@@ -18,7 +18,7 @@ export 'nuevo_medicamento/nuevo_medicamento_widget.dart'
     show NuevoMedicamentoWidget;
 export 'nuevo_medicamento_2/nuevo_medicamento2_widget.dart'
     show NuevoMedicamento2Widget;
-export 'nuevo_medicamento_3/nuevo_medicamento3_widget.dart'
-    show NuevoMedicamento3Widget;
 export 'nuevo_medicamento_4/nuevo_medicamento4_widget.dart'
     show NuevoMedicamento4Widget;
+export 'nueva_cita/nueva_cita_widget.dart' show NuevaCitaWidget;
+export 'nuevo_indicador/nuevo_indicador_widget.dart' show NuevoIndicadorWidget;

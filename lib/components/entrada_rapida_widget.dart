@@ -1,4 +1,6 @@
-import '../components/medicion_liquidos_entrada_widget.dart';
+import '../components/medicion_liquidos_ref_widget.dart';
+import '../components/peso_corporal_ref_widget.dart';
+import '../components/presion_arteria_ref_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -65,9 +67,6 @@ class _EntradaRapidaWidgetState extends State<EntradaRapidaWidget> {
                       size: 16,
                     ),
                     onPressed: () async {
-                      logFirebaseEvent(
-                          'ENTRADA_RAPIDA_COMP_asset20_ICON_ON_TAP');
-                      logFirebaseEvent('IconButton_Bottom-Sheet');
                       Navigator.pop(context);
                     },
                   ),
@@ -93,9 +92,6 @@ class _EntradaRapidaWidgetState extends State<EntradaRapidaWidget> {
                         decoration: BoxDecoration(),
                         child: InkWell(
                           onTap: () async {
-                            logFirebaseEvent(
-                                'ENTRADA_RAPIDA_COMP_Column_axwrh4s3_ON_TAP');
-                            logFirebaseEvent('Column_Bottom-Sheet');
                             await showModalBottomSheet(
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,
@@ -105,12 +101,11 @@ class _EntradaRapidaWidgetState extends State<EntradaRapidaWidget> {
                                   padding: MediaQuery.of(context).viewInsets,
                                   child: Container(
                                     height: 380,
-                                    child: MedicionLiquidosEntradaWidget(),
+                                    child: MedicionLiquidosRefWidget(),
                                   ),
                                 );
                               },
                             );
-                            logFirebaseEvent('Column_Bottom-Sheet');
                             Navigator.pop(context);
                           },
                           child: Column(
@@ -121,13 +116,13 @@ class _EntradaRapidaWidgetState extends State<EntradaRapidaWidget> {
                                 height: 48,
                                 decoration: BoxDecoration(
                                   color: Color(0xFF1944DA),
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: Image.asset(
+                                      'assets/images/Component_6-2.png',
+                                    ).image,
+                                  ),
                                   borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Icon(
-                                  FFIcons.ksalud,
-                                  color: FlutterFlowTheme.of(context)
-                                      .tertiaryColor,
-                                  size: 24,
                                 ),
                               ),
                               Padding(
@@ -152,136 +147,165 @@ class _EntradaRapidaWidgetState extends State<EntradaRapidaWidget> {
                       width: 100,
                       height: 100,
                       decoration: BoxDecoration(),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: 48,
-                            height: 48,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF6A19ED),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Icon(
-                              FFIcons.ksalud,
-                              color: FlutterFlowTheme.of(context).tertiaryColor,
-                              size: 24,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Container(
-                              decoration: BoxDecoration(),
-                              child: Text(
-                                'Peso \ncorporal',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context).bodyText1,
+                      child: InkWell(
+                        onTap: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: Container(
+                                  height: 380,
+                                  child: PesoCorporalRefWidget(),
+                                ),
+                              );
+                            },
+                          );
+                          Navigator.pop(context);
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 48,
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF6A19ED),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: Image.asset(
+                                    'assets/images/Component_6-1.png',
+                                  ).image,
+                                ),
+                                borderRadius: BorderRadius.circular(20),
                               ),
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                              child: Container(
+                                decoration: BoxDecoration(),
+                                child: Text(
+                                  'Peso \ncorporal',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Container(
                       width: 100,
                       height: 100,
                       decoration: BoxDecoration(),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: 48,
-                            height: 48,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF197BED),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Icon(
-                              FFIcons.ksalud,
-                              color: FlutterFlowTheme.of(context).tertiaryColor,
-                              size: 24,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Container(
-                              decoration: BoxDecoration(),
-                              child: Text(
-                                'Presión \narterial',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context).bodyText1,
+                      child: InkWell(
+                        onTap: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: Container(
+                                  height: 380,
+                                  child: PresionArteriaRefWidget(),
+                                ),
+                              );
+                            },
+                          );
+                          Navigator.pop(context);
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 48,
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF197BED),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: Image.asset(
+                                    'assets/images/Component_6.png',
+                                  ).image,
+                                ),
+                                borderRadius: BorderRadius.circular(20),
                               ),
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                              child: Container(
+                                decoration: BoxDecoration(),
+                                child: Text(
+                                  'Presión \narterial',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Container(
                       width: 100,
                       height: 100,
                       decoration: BoxDecoration(),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: 48,
-                            height: 48,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF37B798),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Icon(
-                              FFIcons.ksalud,
-                              color: FlutterFlowTheme.of(context).tertiaryColor,
-                              size: 24,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Container(
-                              decoration: BoxDecoration(),
-                              child: Text(
-                                'Ritmo \ncardiaco',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context).bodyText1,
+                      child: InkWell(
+                        onTap: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: Container(
+                                  height: 380,
+                                  child: PresionArteriaRefWidget(),
+                                ),
+                              );
+                            },
+                          );
+                          Navigator.pop(context);
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 48,
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF37B798),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: Image.asset(
+                                    'assets/images/Component_7.png',
+                                  ).image,
+                                ),
+                                borderRadius: BorderRadius.circular(20),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: 48,
-                            height: 48,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF37B798),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Icon(
-                              FFIcons.ksalud,
-                              color: FlutterFlowTheme.of(context).tertiaryColor,
-                              size: 24,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Container(
-                              decoration: BoxDecoration(),
-                              child: Text(
-                                'Ritmo \ncardiaco',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context).bodyText1,
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                              child: Container(
+                                decoration: BoxDecoration(),
+                                child: Text(
+                                  'Ritmo \ncardiaco',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],

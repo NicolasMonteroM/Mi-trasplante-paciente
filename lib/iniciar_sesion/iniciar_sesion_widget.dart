@@ -24,8 +24,6 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Iniciar_sesion'});
     mailController = TextEditingController();
     passwordController = TextEditingController();
     passwordVisibility = false;
@@ -88,10 +86,6 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                                           size: 24,
                                         ),
                                         onPressed: () async {
-                                          logFirebaseEvent(
-                                              'INICIAR_SESION_PAGE_arrow_back_rounded_ICON_ON_TAP');
-                                          logFirebaseEvent(
-                                              'IconButton_Navigate-Back');
                                           Navigator.pop(context);
                                         },
                                       ),
@@ -368,10 +362,6 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 16),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            logFirebaseEvent(
-                                'INICIAR_SESION_PAGE_Button-Login_ON_TAP');
-                            logFirebaseEvent('Button-Login_Auth');
-
                             final user = await signInWithEmail(
                               context,
                               mailController.text,

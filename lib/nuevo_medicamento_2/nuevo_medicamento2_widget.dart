@@ -1,10 +1,12 @@
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../nuevo_medicamento_3/nuevo_medicamento3_widget.dart';
+import '../nuevo_medicamento_4/nuevo_medicamento4_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,12 +16,10 @@ import 'package:google_fonts/google_fonts.dart';
 class NuevoMedicamento2Widget extends StatefulWidget {
   const NuevoMedicamento2Widget({
     Key key,
-    this.nombreParametro,
-    this.concentracionParametro,
+    this.medicamentoRef,
   }) : super(key: key);
 
-  final String nombreParametro;
-  final String concentracionParametro;
+  final DocumentReference medicamentoRef;
 
   @override
   _NuevoMedicamento2WidgetState createState() =>
@@ -27,565 +27,1829 @@ class NuevoMedicamento2Widget extends StatefulWidget {
 }
 
 class _NuevoMedicamento2WidgetState extends State<NuevoMedicamento2Widget> {
+  DateTime datePicked10;
   DateTime datePicked1;
-  String numeroDeDosisValue;
-  String presentacionValue;
-  String vecesAlDiaValue;
   DateTime datePicked2;
   DateTime datePicked3;
+  DateTime datePicked4;
+  DateTime datePicked5;
+  DateTime datePicked6;
+  DateTime datePicked7;
+  DateTime datePicked8;
+  DateTime datePicked9;
+  DateTime datePicked11;
+  DateTime datePicked12;
+  String numeroDeDosisValue;
+  String vecesAlDiaValue;
+  DateTime datePicked13;
+  DateTime datePicked14;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  void initState() {
-    super.initState();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Nuevo_medicamento_2'});
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30,
-                              borderWidth: 1,
-                              buttonSize: 50,
-                              icon: Icon(
-                                Icons.arrow_back_rounded,
-                                color: Color(0xFF0F1113),
-                                size: 24,
+    return StreamBuilder<MedicamentosRecord>(
+      stream: MedicamentosRecord.getDocument(widget.medicamentoRef),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Center(
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: SpinKitSquareCircle(
+                color: FlutterFlowTheme.of(context).primaryColor,
+                size: 50,
+              ),
+            ),
+          );
+        }
+        final nuevoMedicamento2MedicamentosRecord = snapshot.data;
+        return Scaffold(
+          key: scaffoldKey,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          body: SafeArea(
+            child: GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 8),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                child: FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 30,
+                                  borderWidth: 1,
+                                  buttonSize: 50,
+                                  icon: Icon(
+                                    Icons.arrow_back_rounded,
+                                    color: Color(0xFF0F1113),
+                                    size: 24,
+                                  ),
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                  },
+                                ),
                               ),
-                              onPressed: () async {
-                                logFirebaseEvent(
-                                    'NUEVO_MEDICAMENTO_2_PAGE_arrow_back_rounded_ICON_ON_TAP');
-                                logFirebaseEvent('IconButton_Navigate-Back');
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                            child: Text(
-                              'Regresar',
-                              style:
-                                  FlutterFlowTheme.of(context).title1.override(
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                                child: Text(
+                                  'Regresar',
+                                  style: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
                                         fontFamily: 'Outfit',
                                         color: Color(0xFF0F1113),
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
-                            ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 24, 20, 16),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Frecuencia y dosis',
-                              style:
-                                  FlutterFlowTheme.of(context).title2.override(
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 24, 20, 16),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Frecuencia y dosis',
+                                  style: FlutterFlowTheme.of(context)
+                                      .title2
+                                      .override(
                                         fontFamily: 'Proxima nova',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                         useGoogleFonts: false,
                                       ),
-                            ),
+                                ),
+                              ),
+                            ],
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      width: double.infinity,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 24,
+                            color: Color(0x19414141),
+                          )
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).tertiaryColor,
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 24,
-                        color: Color(0x19414141),
-                      )
-                    ],
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 8),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Dosis',
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Proxima nova',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            useGoogleFonts: false,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Row(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                              child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Container(
-                                    width: 100,
-                                    decoration: BoxDecoration(),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: FlutterFlowDropDown(
-                                        initialOption: numeroDeDosisValue ??=
-                                            '1',
-                                        options: [
-                                          '1/4',
-                                          '1/3',
-                                          'Mitad',
-                                          '1',
-                                          '2',
-                                          '3',
-                                          '4',
-                                          '5',
-                                          '6',
-                                          '7',
-                                          '8'
-                                        ].toList(),
-                                        onChanged: (val) => setState(
-                                            () => numeroDeDosisValue = val),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 50,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Proxima nova',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.normal,
-                                              useGoogleFonts: false,
-                                            ),
-                                        fillColor: Colors.white,
-                                        elevation: 2,
-                                        borderColor: Color(0xFFC9C9C9),
-                                        borderWidth: 0,
-                                        borderRadius: 12,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
-                                            12, 4, 12, 4),
-                                        hidesUnderline: true,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(),
-                                  ),
-                                  Container(
-                                    width: 200,
-                                    decoration: BoxDecoration(),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: FlutterFlowDropDown(
-                                        initialOption: presentacionValue ??=
-                                            'Pastilla',
-                                        options: functions
-                                            .presentacionMedicamento(
-                                                numeroDeDosisValue)
-                                            .toList(),
-                                        onChanged: (val) => setState(
-                                            () => presentacionValue = val),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 50,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Proxima nova',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.normal,
-                                              useGoogleFonts: false,
-                                            ),
-                                        fillColor: Colors.white,
-                                        elevation: 2,
-                                        borderColor: Color(0xFFC9C9C9),
-                                        borderWidth: 0,
-                                        borderRadius: 12,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
-                                            12, 4, 12, 4),
-                                        hidesUnderline: true,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      '¿Cuántas veces al día?',
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Proxima nova',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            useGoogleFonts: false,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    decoration: BoxDecoration(),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: FlutterFlowDropDown(
-                                        initialOption: vecesAlDiaValue ??= '1',
-                                        options: [
-                                          '1',
-                                          '2',
-                                          '3',
-                                          '4',
-                                          '5',
-                                          '6',
-                                          '7',
-                                          '8',
-                                          '9',
-                                          '10',
-                                          '11',
-                                          '12'
-                                        ].toList(),
-                                        onChanged: (val) => setState(
-                                            () => vecesAlDiaValue = val),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 50,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Proxima nova',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.normal,
-                                              useGoogleFonts: false,
-                                            ),
-                                        fillColor: Colors.white,
-                                        elevation: 2,
-                                        borderColor: Color(0xFFC9C9C9),
-                                        borderWidth: 0,
-                                        borderRadius: 12,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
-                                            12, 4, 12, 4),
-                                        hidesUnderline: true,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(),
-                                    child: Text(
-                                      functions.vecesAlDia(vecesAlDiaValue),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Apróximadamente cada ${functions.intervaloDeHoras(vecesAlDiaValue)} horas',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText2
-                                          .override(
-                                            fontFamily: 'Proxima nova',
-                                            fontSize: 14,
-                                            useGoogleFonts: false,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Hora de toma',
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Proxima nova',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            useGoogleFonts: false,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'NUEVO_MEDICAMENTO_2_PAGE_seleccionar-fecha_ON_TAP');
-                                    logFirebaseEvent(
-                                        'seleccionar-fecha_Date-Time-Picker');
-                                    await DatePicker.showTimePicker(
-                                      context,
-                                      showTitleActions: true,
-                                      onConfirm: (date) {
-                                        setState(() => datePicked1 = date);
-                                      },
-                                      currentTime: getCurrentTimestamp,
-                                      locale: LocaleType.values.firstWhere(
-                                        (l) =>
-                                            l.name ==
-                                            FFLocalizations.of(context)
-                                                .languageCode,
-                                        orElse: null,
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    width: 90,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .tertiaryColor,
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
-                                    child: Column(
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 20, 0, 8),
+                                    child: Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    4, 0, 4, 0),
-                                            child: Text(
-                                              dateTimeFormat('jm', datePicked1),
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1,
-                                            ),
-                                          ),
-                                        ),
-                                        Divider(
-                                          thickness: 2,
+                                        Text(
+                                          'Dosis',
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle2
+                                              .override(
+                                                fontFamily: 'Proxima nova',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                useGoogleFonts: false,
+                                              ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        width: 100,
+                                        decoration: BoxDecoration(),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: FlutterFlowDropDown(
+                                            initialOption:
+                                                numeroDeDosisValue ??= '1',
+                                            options: [
+                                              '1/4',
+                                              '1/3',
+                                              'Mitad',
+                                              '1',
+                                              '2',
+                                              '3',
+                                              '4',
+                                              '5',
+                                              '6',
+                                              '7',
+                                              '8'
+                                            ],
+                                            onChanged: (val) => setState(
+                                                () => numeroDeDosisValue = val),
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 50,
+                                            textStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Proxima nova',
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: false,
+                                                ),
+                                            fillColor: Colors.white,
+                                            elevation: 2,
+                                            borderColor: Color(0xFFC9C9C9),
+                                            borderWidth: 0,
+                                            borderRadius: 12,
+                                            margin:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12, 4, 12, 4),
+                                            hidesUnderline: true,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(),
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            nuevoMedicamento2MedicamentosRecord
+                                                .formaFarmaceutica,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 8),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          '¿Cuántas veces al día?',
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle2
+                                              .override(
+                                                fontFamily: 'Proxima nova',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                useGoogleFonts: false,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        width: 100,
+                                        decoration: BoxDecoration(),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: FlutterFlowDropDown(
+                                            initialOption: vecesAlDiaValue ??=
+                                                '1',
+                                            options: [
+                                              '1',
+                                              '2',
+                                              '3',
+                                              '4',
+                                              '5',
+                                              '6',
+                                              '7',
+                                              '8',
+                                              '9',
+                                              '10',
+                                              '11',
+                                              '12'
+                                            ],
+                                            onChanged: (val) => setState(
+                                                () => vecesAlDiaValue = val),
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 50,
+                                            textStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Proxima nova',
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: false,
+                                                ),
+                                            fillColor: Colors.white,
+                                            elevation: 2,
+                                            borderColor: Color(0xFFC9C9C9),
+                                            borderWidth: 0,
+                                            borderRadius: 12,
+                                            margin:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12, 4, 12, 4),
+                                            hidesUnderline: true,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(),
+                                        child: Text(
+                                          functions.vecesAlDia(vecesAlDiaValue),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 4, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          'Apróximadamente cada ${functions.intervaloDeHoras(vecesAlDiaValue)} horas',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText2
+                                              .override(
+                                                fontFamily: 'Proxima nova',
+                                                fontSize: 14,
+                                                useGoogleFonts: false,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20, 0, 20, 20),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 16, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              '1. Hora de toma',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .subtitle2
+                                                  .override(
+                                                    fontFamily: 'Proxima nova',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 8, 0),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            await DatePicker.showTimePicker(
+                                              context,
+                                              showTitleActions: true,
+                                              onConfirm: (date) {
+                                                setState(
+                                                    () => datePicked1 = date);
+                                              },
+                                              currentTime: getCurrentTimestamp,
+                                              locale:
+                                                  LocaleType.values.firstWhere(
+                                                (l) =>
+                                                    l.name ==
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                                orElse: null,
+                                              ),
+                                            );
+                                          },
+                                          child: Container(
+                                            width: 90,
+                                            height: 50,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiaryColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(4, 0, 4, 4),
+                                                  child: Text(
+                                                    dateTimeFormat(
+                                                        'jm', datePicked1),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1,
+                                                  ),
+                                                ),
+                                                Divider(
+                                                  thickness: 2,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '2') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '2. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked2 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked2),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '3') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '3. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked3 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked3),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '4') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '4. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked4 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked4),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '5') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '5. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked5 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked5),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '6') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '6. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked6 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked6),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '7') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '7. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked7 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked7),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '8') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '8. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked8 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked8),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '9') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '9. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(
+                                                      () => datePicked9 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked9),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '10') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '10. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(() =>
+                                                      datePicked10 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked10),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '11') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '11. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(() =>
+                                                      datePicked11 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked11),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (functions.checkInputPosition(
+                                        vecesAlDiaValue, '12') ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 20),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '12. Hora de toma',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 8, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await DatePicker.showTimePicker(
+                                                context,
+                                                showTitleActions: true,
+                                                onConfirm: (date) {
+                                                  setState(() =>
+                                                      datePicked12 = date);
+                                                },
+                                                currentTime:
+                                                    getCurrentTimestamp,
+                                                locale: LocaleType.values
+                                                    .firstWhere(
+                                                  (l) =>
+                                                      l.name ==
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .languageCode,
+                                                  orElse: null,
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 90,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 0, 4, 4),
+                                                    child: Text(
+                                                      dateTimeFormat(
+                                                          'jm', datePicked12),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 16, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          'Fecha de inicio',
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle2
+                                              .override(
+                                                fontFamily: 'Proxima nova',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                useGoogleFonts: false,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await DatePicker.showDatePicker(
+                                          context,
+                                          showTitleActions: true,
+                                          onConfirm: (date) {
+                                            setState(() => datePicked13 = date);
+                                          },
+                                          currentTime: getCurrentTimestamp,
+                                          minTime: getCurrentTimestamp,
+                                          locale: LocaleType.values.firstWhere(
+                                            (l) =>
+                                                l.name ==
+                                                FFLocalizations.of(context)
+                                                    .languageCode,
+                                            orElse: null,
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                          border: Border.all(
+                                            color: Color(0xFFC9C9C9),
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16, 12, 16, 12),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    valueOrDefault<String>(
+                                                      dateTimeFormat(
+                                                          'yMd', datePicked13),
+                                                      'dd/mm/aaaa',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1,
+                                                  ),
+                                                ],
+                                              ),
+                                              FaIcon(
+                                                FontAwesomeIcons.calendar,
+                                                color: Color(0xFFC6CADB),
+                                                size: 20,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            if (!(FFAppState().showFechaFinalizacion) ?? true)
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20, 0, 20, 20),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      'Fecha de inicio',
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Proxima nova',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            useGoogleFonts: false,
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              setState(() => FFAppState()
+                                                      .showFechaFinalizacion =
+                                                  true);
+                                            },
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 4, 0),
+                                                  child: Text(
+                                                    'Agregar fecha de finalización*',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryColor,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  FFIcons.kasset18,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryColor,
+                                                  size: 16,
+                                                ),
+                                              ],
+                                            ),
                                           ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 4, 0),
+                                                child: Text(
+                                                  'Verifica la fecha de finalización con tu médico',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily:
+                                                            'Proxima nova',
+                                                        fontSize: 14,
+                                                        useGoogleFonts: false,
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
                               ),
-                              Expanded(
-                                child: InkWell(
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'NUEVO_MEDICAMENTO_2_PAGE_fechadeinicio_ON_TAP');
-                                    logFirebaseEvent(
-                                        'fechadeinicio_Date-Time-Picker');
-                                    await DatePicker.showDatePicker(
-                                      context,
-                                      showTitleActions: true,
-                                      onConfirm: (date) {
-                                        setState(() => datePicked2 = date);
-                                      },
-                                      currentTime: getCurrentTimestamp,
-                                      minTime: getCurrentTimestamp,
-                                      locale: LocaleType.values.firstWhere(
-                                        (l) =>
-                                            l.name ==
-                                            FFLocalizations.of(context)
-                                                .languageCode,
-                                        orElse: null,
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .tertiaryColor,
-                                      borderRadius: BorderRadius.circular(16),
-                                      border: Border.all(
-                                        color: Color(0xFFC9C9C9),
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 12, 16, 12),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                valueOrDefault<String>(
-                                                  dateTimeFormat(
-                                                      'yMd', datePicked2),
-                                                  'Seleccionar',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1,
-                                              ),
-                                            ],
-                                          ),
-                                          FaIcon(
-                                            FontAwesomeIcons.calendar,
-                                            color: Color(0xFFC6CADB),
-                                            size: 20,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        if (!(functions
-                                .finalizacionSeleccionada(datePicked3)) ??
-                            true)
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
+                            if (FFAppState().showFechaFinalizacion ?? true)
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20, 0, 20, 20),
+                                child: Row(
                                   mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 16, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            'Fecha de finalización',
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle2
+                                                .override(
+                                                  fontFamily: 'Proxima nova',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
                                       child: InkWell(
                                         onTap: () async {
-                                          logFirebaseEvent(
-                                              'NUEVO_MEDICAMENTO_2_PAGE_Row_xlgzydkx_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Row_Date-Time-Picker');
                                           await DatePicker.showDatePicker(
                                             context,
                                             showTitleActions: true,
                                             onConfirm: (date) {
                                               setState(
-                                                  () => datePicked3 = date);
+                                                  () => datePicked14 = date);
                                             },
                                             currentTime: getCurrentTimestamp,
                                             minTime: getCurrentTimestamp,
@@ -599,259 +1863,188 @@ class _NuevoMedicamento2WidgetState extends State<NuevoMedicamento2Widget> {
                                             ),
                                           );
                                         },
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 4, 0),
-                                              child: Text(
-                                                'Agregar duración*',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily:
-                                                              'Proxima nova',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryColor,
-                                                          useGoogleFonts: false,
-                                                        ),
-                                              ),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            border: Border.all(
+                                              color: Color(0xFFC9C9C9),
                                             ),
-                                            Icon(
-                                              FFIcons.kasset18,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryColor,
-                                              size: 16,
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16, 12, 16, 12),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      valueOrDefault<String>(
+                                                        dateTimeFormat('yMd',
+                                                            datePicked14),
+                                                        'dd/mm/aaaa',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ],
+                                                ),
+                                                FaIcon(
+                                                  FontAwesomeIcons.calendar,
+                                                  color: Color(0xFFC6CADB),
+                                                  size: 20,
+                                                ),
+                                              ],
                                             ),
-                                          ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 16, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 4, 0),
-                                            child: Text(
-                                              'Verifica la fecha de finalización con tu médico',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText2
-                                                      .override(
-                                                        fontFamily:
-                                                            'Proxima nova',
-                                                        fontSize: 14,
-                                                        useGoogleFonts: false,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
+                                    Container(
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          setState(() => FFAppState()
+                                              .showFechaFinalizacion = false);
+                                        },
+                                        child: Icon(
+                                          FFIcons.kasset20,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 20,
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
-                        if (functions.finalizacionSeleccionada(datePicked3) ??
-                            true)
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 16, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Fecha de finalización',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Proxima nova',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              useGoogleFonts: false,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 50,
-                                    decoration: BoxDecoration(
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).tertiaryColor,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 24,
+                          color: Color(0x19414141),
+                        )
+                      ],
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).lineColor,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                          child: Container(
+                            decoration: BoxDecoration(),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16, 16, 16, 16),
+                              child: Text(
+                                'Cancelar',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Proxima nova',
                                       color: FlutterFlowTheme.of(context)
-                                          .tertiaryColor,
-                                      borderRadius: BorderRadius.circular(16),
-                                      border: Border.all(
-                                        color: Color(0xFFC9C9C9),
-                                      ),
+                                          .primaryColor,
+                                      useGoogleFonts: false,
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 12, 16, 12),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                valueOrDefault<String>(
-                                                  dateTimeFormat(
-                                                      'yMd', datePicked3),
-                                                  'Seleccionar',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1,
-                                              ),
-                                            ],
-                                          ),
-                                          FaIcon(
-                                            FontAwesomeIcons.calendar,
-                                            color: Color(0xFFC6CADB),
-                                            size: 20,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(),
-                                  child: Icon(
-                                    FFIcons.kasset23,
-                                    color: FlutterFlowTheme.of(context)
-                                        .negativeFeedback,
-                                    size: 20,
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NuevoMedicamento4Widget(
+                                    nombre: nuevoMedicamento2MedicamentosRecord
+                                        .principioActivo,
+                                    medicamento:
+                                        nuevoMedicamento2MedicamentosRecord
+                                            .reference,
+                                    fechaInicio: datePicked13,
+                                    fechaFinalizacion: datePicked14,
+                                    dosis: numeroDeDosisValue,
+                                    hora1: datePicked1,
+                                    hora2: datePicked2,
+                                    hora3: datePicked3,
+                                    hora4: datePicked4,
+                                    hora5: datePicked5,
+                                    hora6: datePicked6,
+                                    hora7: datePicked7,
+                                    hora8: datePicked8,
+                                    hora9: datePicked9,
+                                    hora10: datePicked10,
+                                    hora11: datePicked11,
+                                    hora12: datePicked12,
+                                    vecesAlDia:
+                                        '${vecesAlDiaValue} ${functions.vecesAlDia(vecesAlDiaValue)}',
+                                  ),
+                                ),
+                              );
+                            },
+                            text: 'Continuar',
+                            options: FFButtonOptions(
+                              width: 150,
+                              height: 50,
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Proxima nova',
+                                    color: FlutterFlowTheme.of(context)
+                                        .tertiaryColor,
+                                    fontWeight: FontWeight.normal,
+                                    useGoogleFonts: false,
+                                  ),
+                              elevation: 0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: 12,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                ),
+                ],
               ),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).tertiaryColor,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 24,
-                      color: Color(0x19414141),
-                    )
-                  ],
-                  border: Border.all(
-                    color: FlutterFlowTheme.of(context).lineColor,
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                      child: Container(
-                        decoration: BoxDecoration(),
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
-                          child: Text(
-                            'Cancelar',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Proxima nova',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  useGoogleFonts: false,
-                                ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          logFirebaseEvent(
-                              'NUEVO_MEDICAMENTO_2_PAGE_Continue_ON_TAP');
-                          logFirebaseEvent('Continue_Navigate-To');
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => NuevoMedicamento3Widget(
-                                horaParametro: datePicked1,
-                                dosisParametro: numeroDeDosisValue,
-                                repeticionesParametro: vecesAlDiaValue,
-                                finalizacionParametro: datePicked3,
-                                inicioParametro: datePicked2,
-                                presentacionParametro: presentacionValue,
-                                nombreParametro: widget.nombreParametro,
-                                concentracionParametro:
-                                    widget.concentracionParametro,
-                                repeticionesP2:
-                                    functions.vecesAlDia(vecesAlDiaValue),
-                              ),
-                            ),
-                          );
-                        },
-                        text: 'Continuar',
-                        options: FFButtonOptions(
-                          width: 150,
-                          height: 50,
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Proxima nova',
-                                color:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
-                                fontWeight: FontWeight.normal,
-                                useGoogleFonts: false,
-                              ),
-                          elevation: 0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

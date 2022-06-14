@@ -19,13 +19,6 @@ class _ResumenRegistroWidgetState extends State<ResumenRegistroWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  void initState() {
-    super.initState();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Resumen_registro'});
-  }
-
-  @override
   Widget build(BuildContext context) {
     return StreamBuilder<UsersRecord>(
       stream: UsersRecord.getDocument(currentUserReference),
@@ -153,10 +146,6 @@ class _ResumenRegistroWidgetState extends State<ResumenRegistroWidget> {
                                               Expanded(
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
-                                                    logFirebaseEvent(
-                                                        'RESUMEN_REGISTRO_PAGE_Button-Next_ON_TAP');
-                                                    logFirebaseEvent(
-                                                        'Button-Next_Navigate-To');
                                                     await Navigator.push(
                                                       context,
                                                       MaterialPageRoute(

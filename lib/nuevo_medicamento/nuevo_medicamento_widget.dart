@@ -1,7 +1,7 @@
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import '../nuevo_medicamento_2/nuevo_medicamento2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -15,17 +15,14 @@ class NuevoMedicamentoWidget extends StatefulWidget {
 }
 
 class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
-  TextEditingController concentracionController;
-  TextEditingController medicamentoController;
+  List<MedicamentosRecord> algoliaSearchResults = [];
+  TextEditingController searchController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    concentracionController = TextEditingController();
-    medicamentoController = TextEditingController();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Nuevo_medicamento'});
+    searchController = TextEditingController();
   }
 
   @override
@@ -64,9 +61,6 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
                                 size: 24,
                               ),
                               onPressed: () async {
-                                logFirebaseEvent(
-                                    'NUEVO_MEDICAMENTO_PAGE_arrow_back_rounded_ICON_ON_TAP');
-                                logFirebaseEvent('IconButton_Navigate-Back');
                                 Navigator.pop(context);
                               },
                             ),
@@ -127,7 +121,7 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
                           children: [
                             Expanded(
                               child: Text(
-                                'Ingresa la información del medicamento que vas a tomar',
+                                'Busca el medicamento que vas a tomar y seleccionalo',
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                             ),
@@ -135,192 +129,280 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                        child: Column(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                        child: Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Nombre del medicamento',
-                                    style: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily: 'Proxima nova',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          useGoogleFonts: false,
-                                        ),
+                            Expanded(
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                                child: Container(
+                                  width: 100,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: Color(0xFFC9C9C9),
+                                      width: 1,
+                                    ),
                                   ),
-                                ],
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          width: 100,
+                                          decoration: BoxDecoration(),
+                                          child: TextFormField(
+                                            controller: searchController,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Proxima nova',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                              hintStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Proxima nova',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                              ),
+                                              filled: true,
+                                              fillColor: Colors.white,
+                                              contentPadding:
+                                                  EdgeInsetsDirectional
+                                                      .fromSTEB(16, 16, 16, 16),
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Proxima nova',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 16, 0),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            setState(() => FFAppState()
+                                                .showMedicamentosList = false);
+                                          },
+                                          child: Icon(
+                                            FFIcons.kasset20,
+                                            color: Color(0xFFC6CADB),
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                            Container(
-                              width: double.infinity,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(8),
+                            FlutterFlowIconButton(
+                              borderColor:
+                                  FlutterFlowTheme.of(context).lineColor,
+                              borderRadius: 16,
+                              borderWidth: 1,
+                              buttonSize: 50,
+                              fillColor:
+                                  FlutterFlowTheme.of(context).tertiaryColor,
+                              icon: Icon(
+                                FFIcons.kasset31,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                size: 24,
                               ),
-                              child: TextFormField(
-                                controller: medicamentoController,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Proxima nova',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontWeight: FontWeight.normal,
-                                        useGoogleFonts: false,
-                                      ),
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Proxima nova',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontWeight: FontWeight.normal,
-                                        useGoogleFonts: false,
-                                      ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFC9C9C9),
-                                      width: 0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFC9C9C9),
-                                      width: 0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
-                                          24, 24, 20, 24),
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Proxima nova',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      fontWeight: FontWeight.normal,
-                                      useGoogleFonts: false,
-                                    ),
-                              ),
+                              onPressed: () async {
+                                setState(() => algoliaSearchResults = null);
+                                await MedicamentosRecord.search(
+                                  term: searchController.text,
+                                )
+                                    .then((r) => algoliaSearchResults = r)
+                                    .onError(
+                                        (_, __) => algoliaSearchResults = [])
+                                    .whenComplete(() => setState(() {}));
+
+                                setState(() =>
+                                    FFAppState().showMedicamentosList = true);
+                              },
                             ),
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Concentración',
-                                    style: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily: 'Proxima nova',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          useGoogleFonts: false,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Container(
-                                  width: 88,
-                                  decoration: BoxDecoration(),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 8, 0),
-                                    child: TextFormField(
-                                      controller: concentracionController,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Proxima nova',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              useGoogleFonts: false,
-                                            ),
-                                        hintText: '0',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Proxima nova',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              useGoogleFonts: false,
-                                            ),
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0xFFC9C9C9),
-                                            width: 1,
-                                          ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(4.0),
-                                            topRight: Radius.circular(4.0),
-                                          ),
-                                        ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0xFFC9C9C9),
-                                            width: 1,
-                                          ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(4.0),
-                                            topRight: Radius.circular(4.0),
-                                          ),
-                                        ),
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                16, 0, 16, 4),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
-                                      textAlign: TextAlign.center,
-                                      keyboardType: TextInputType.number,
+                      Expanded(
+                        child: Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+                          child: Builder(
+                            builder: (context) {
+                              if (algoliaSearchResults == null) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitSquareCircle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 50,
                                     ),
                                   ),
-                                ),
-                                Text(
-                                  'mg',
-                                  style: FlutterFlowTheme.of(context).bodyText1,
-                                ),
-                              ],
-                            ),
-                          ],
+                                );
+                              }
+                              final medicamentosResults =
+                                  algoliaSearchResults?.toList() ?? [];
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                scrollDirection: Axis.vertical,
+                                itemCount: medicamentosResults.length,
+                                itemBuilder:
+                                    (context, medicamentosResultsIndex) {
+                                  final medicamentosResultsItem =
+                                      medicamentosResults[
+                                          medicamentosResultsIndex];
+                                  return Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 8),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                NuevoMedicamento2Widget(
+                                              medicamentoRef:
+                                                  medicamentosResultsItem
+                                                      .reference,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 14,
+                                              color: Color(0x1A414141),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .lineColor,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16, 0, 0, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    medicamentosResultsItem
+                                                        .principioActivo,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Proxima nova',
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(4, 0, 0, 0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      medicamentosResultsItem
+                                                          .concentracion,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(16, 16, 16, 16),
+                                                child: Container(
+                                                  decoration: BoxDecoration(),
+                                                  child: Icon(
+                                                    FFIcons.kasset26,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ],
@@ -338,8 +420,9 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
                       child: Container(
+                        height: 50,
                         decoration: BoxDecoration(),
                         child: Padding(
                           padding:
@@ -355,47 +438,6 @@ class _NuevoMedicamentoWidgetState extends State<NuevoMedicamentoWidget> {
                                   useGoogleFonts: false,
                                 ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          logFirebaseEvent(
-                              'NUEVO_MEDICAMENTO_PAGE_Continue_ON_TAP');
-                          logFirebaseEvent('Continue_Navigate-To');
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => NuevoMedicamento2Widget(
-                                nombreParametro: medicamentoController.text,
-                                concentracionParametro:
-                                    concentracionController.text,
-                              ),
-                            ),
-                          );
-                        },
-                        text: 'Continuar',
-                        options: FFButtonOptions(
-                          width: 150,
-                          height: 50,
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Proxima nova',
-                                color:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
-                                fontWeight: FontWeight.normal,
-                                useGoogleFonts: false,
-                              ),
-                          elevation: 0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: 12,
                         ),
                       ),
                     ),

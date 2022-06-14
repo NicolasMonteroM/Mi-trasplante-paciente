@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../onboarding/onboarding_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,14 +17,7 @@ class PerfilWidget extends StatefulWidget {
 }
 
 class _PerfilWidgetState extends State<PerfilWidget> {
-  DateTime datePicked;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Perfil'});
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,27 +87,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'PERFIL_PAGE_fechaSelccionada_ON_TAP');
-                                      logFirebaseEvent(
-                                          'fechaSelccionada_Date-Time-Picker');
-                                      await DatePicker.showDatePicker(
-                                        context,
-                                        showTitleActions: true,
-                                        onConfirm: (date) {
-                                          setState(() => datePicked = date);
-                                        },
-                                        currentTime: getCurrentTimestamp,
-                                        minTime: DateTime(0, 0, 0),
-                                        locale: LocaleType.values.firstWhere(
-                                          (l) =>
-                                              l.name ==
-                                              FFLocalizations.of(context)
-                                                  .languageCode,
-                                          orElse: null,
-                                        ),
-                                      );
+                                    onPressed: () {
+                                      print('fechaSelccionada pressed ...');
                                     },
                                     text: 'Editar perfil',
                                     icon: FaIcon(
@@ -206,9 +179,12 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Text(
-                                  'Etapa:  ${perfilUsersRecord.stage}',
-                                  style: FlutterFlowTheme.of(context).bodyText2,
+                                Expanded(
+                                  child: Text(
+                                    'Etapa:  ${perfilUsersRecord.stage}',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText2,
+                                  ),
                                 ),
                               ],
                             ),
@@ -461,9 +437,6 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                             children: [
                               InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent(
-                                      'PERFIL_PAGE_Text_3199m1ov_ON_TAP');
-                                  logFirebaseEvent('Text_Auth');
                                   await signOut();
                                   await Navigator.pushAndRemoveUntil(
                                     context,

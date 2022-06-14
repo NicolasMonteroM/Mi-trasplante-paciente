@@ -20,26 +20,44 @@ import 'package:page_transition/page_transition.dart';
 class NuevoMedicamento4Widget extends StatefulWidget {
   const NuevoMedicamento4Widget({
     Key key,
-    this.nombreParametro,
-    this.concentracionParametro,
-    this.inicioParametro,
-    this.finalizacionParametro,
-    this.dosisParametro,
-    this.repeticionesParametro,
-    this.horaParametro,
-    this.presentacionParametro,
-    this.repeticionesP2,
+    this.nombre,
+    this.medicamento,
+    this.fechaInicio,
+    this.fechaFinalizacion,
+    this.dosis,
+    this.hora1,
+    this.hora2,
+    this.hora3,
+    this.hora4,
+    this.hora5,
+    this.hora6,
+    this.hora7,
+    this.hora8,
+    this.hora9,
+    this.hora10,
+    this.hora11,
+    this.hora12,
+    this.vecesAlDia,
   }) : super(key: key);
 
-  final String nombreParametro;
-  final String concentracionParametro;
-  final DateTime inicioParametro;
-  final DateTime finalizacionParametro;
-  final String dosisParametro;
-  final String repeticionesParametro;
-  final DateTime horaParametro;
-  final String presentacionParametro;
-  final String repeticionesP2;
+  final String nombre;
+  final DocumentReference medicamento;
+  final DateTime fechaInicio;
+  final DateTime fechaFinalizacion;
+  final String dosis;
+  final DateTime hora1;
+  final DateTime hora2;
+  final DateTime hora3;
+  final DateTime hora4;
+  final DateTime hora5;
+  final DateTime hora6;
+  final DateTime hora7;
+  final DateTime hora8;
+  final DateTime hora9;
+  final DateTime hora10;
+  final DateTime hora11;
+  final DateTime hora12;
+  final String vecesAlDia;
 
   @override
   _NuevoMedicamento4WidgetState createState() =>
@@ -47,6 +65,7 @@ class NuevoMedicamento4Widget extends StatefulWidget {
 }
 
 class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
+  RecordatoriosRecord recordatorioCreado;
   String uploadedFileUrl = '';
   TextEditingController indicacionesController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -55,8 +74,6 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
   void initState() {
     super.initState();
     indicacionesController = TextEditingController();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Nuevo_medicamento_4'});
   }
 
   @override
@@ -95,9 +112,6 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
                                 size: 24,
                               ),
                               onPressed: () async {
-                                logFirebaseEvent(
-                                    'NUEVO_MEDICAMENTO_4_PAGE_arrow_back_rounded_ICON_ON_TAP');
-                                logFirebaseEvent('IconButton_Navigate-Back');
                                 Navigator.pop(context);
                               },
                             ),
@@ -306,10 +320,6 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
                                         ),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            logFirebaseEvent(
-                                                'NUEVO_MEDICAMENTO_4_PAGE_agregarImagen_ON_TAP');
-                                            logFirebaseEvent(
-                                                'agregarImagen_Upload-Photo-Video');
                                             final selectedMedia =
                                                 await selectMediaWithSourceBottomSheet(
                                               context: context,
@@ -407,10 +417,6 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
                                       children: [
                                         InkWell(
                                           onTap: () async {
-                                            logFirebaseEvent(
-                                                'NUEVO_MEDICAMENTO_4_PAGE_Image_ydvo135x_ON_TAP');
-                                            logFirebaseEvent(
-                                                'Image_Expand-Image');
                                             await Navigator.push(
                                               context,
                                               PageTransition(
@@ -449,10 +455,6 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
                                                   0, 8, 0, 0),
                                           child: InkWell(
                                             onTap: () async {
-                                              logFirebaseEvent(
-                                                  'NUEVO_MEDICAMENTO_4_PAGE_Row_1lohjanx_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'Row_Custom-Action');
                                               await actions.borrarImagen(
                                                 uploadedFileUrl,
                                               );
@@ -556,32 +558,60 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
                       padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          logFirebaseEvent(
-                              'NUEVO_MEDICAMENTO_4_PAGE_Continue_ON_TAP');
-                          logFirebaseEvent('Continue_Backend-Call');
-
-                          final recordatoriosCreateData =
-                              createRecordatoriosRecordData(
-                            indicacionesDeConsumo: indicacionesController.text,
-                            nombre: widget.nombreParametro,
-                            tipo: 'Medicamento',
-                            hora: widget.horaParametro,
-                            fecha: widget.inicioParametro,
-                            imagen: uploadedFileUrl,
-                            dosis: widget.dosisParametro,
-                            repeticiones: widget.dosisParametro,
-                            presentacion: widget.presentacionParametro,
-                            fechaInicio: widget.inicioParametro,
-                            fechaFinalizacion: widget.finalizacionParametro,
-                            concentracion: widget.concentracionParametro,
-                            repeticionesP2: widget.repeticionesP2,
-                            existeFinalizacion: functions.existeFinalizacion(
-                                widget.finalizacionParametro),
-                          );
-                          await RecordatoriosRecord.collection
-                              .doc()
+                          final recordatoriosCreateData = {
+                            ...createRecordatoriosRecordData(
+                              nombre: widget.nombre,
+                              hora: widget.hora1,
+                              indicacionesDeConsumo:
+                                  indicacionesController.text,
+                              medicamento: widget.medicamento,
+                              imagen: uploadedFileUrl,
+                              fecha: widget.fechaInicio,
+                              tipo: 'Medicamento',
+                            ),
+                            'usuario_asignado': [currentUserReference],
+                          };
+                          var recordatoriosRecordReference =
+                              RecordatoriosRecord.collection.doc();
+                          await recordatoriosRecordReference
                               .set(recordatoriosCreateData);
-                          logFirebaseEvent('Continue_Bottom-Sheet');
+                          recordatorioCreado =
+                              RecordatoriosRecord.getDocumentFromData(
+                                  recordatoriosCreateData,
+                                  recordatoriosRecordReference);
+
+                          final esquemaMedicamentoCreateData = {
+                            ...createEsquemaMedicamentoRecordData(
+                              medicamento: widget.medicamento,
+                              fechaInicio: widget.fechaInicio,
+                              fechaFinalizacion: widget.fechaFinalizacion,
+                              dosis: widget.dosis,
+                              indicacionesDeConsumo:
+                                  indicacionesController.text,
+                              imagenMedicamento: uploadedFileUrl,
+                              vecesAlDia: widget.vecesAlDia,
+                            ),
+                            'horas_de_toma': functions.agregarHorasALista(
+                                widget.hora1,
+                                widget.hora2,
+                                widget.hora3,
+                                widget.hora4,
+                                widget.hora5,
+                                widget.hora6,
+                                widget.hora7,
+                                widget.hora8,
+                                widget.hora9,
+                                widget.hora10,
+                                widget.hora11,
+                                widget.hora12),
+                            'listado_recordatorios': [
+                              recordatorioCreado.reference
+                            ],
+                            'usuario_asignado': [currentUserReference],
+                          };
+                          await EsquemaMedicamentoRecord.collection
+                              .doc()
+                              .set(esquemaMedicamentoCreateData);
                           await showModalBottomSheet(
                             isScrollControlled: true,
                             backgroundColor: Colors.transparent,
@@ -589,19 +619,18 @@ class _NuevoMedicamento4WidgetState extends State<NuevoMedicamento4Widget> {
                             builder: (context) {
                               return Padding(
                                 padding: MediaQuery.of(context).viewInsets,
-                                child: Container(
-                                  height: 420,
-                                  child: ConfirmacionMedicamentoWidget(
-                                    nombreParametro: widget.nombreParametro,
-                                    dosisParametro:
-                                        '${widget.dosisParametro} ${widget.repeticionesParametro}',
-                                  ),
+                                child: ConfirmacionMedicamentoWidget(
+                                  nombreParametro: widget.nombre,
+                                  dosisParametro: widget.dosis,
+                                  medicamento: widget.medicamento,
                                 ),
                               );
                             },
                           );
+
+                          setState(() {});
                         },
-                        text: 'Continuar',
+                        text: 'Crear',
                         options: FFButtonOptions(
                           width: 150,
                           height: 50,

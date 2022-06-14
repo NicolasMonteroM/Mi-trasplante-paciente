@@ -1,6 +1,8 @@
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../nueva_cita/nueva_cita_widget.dart';
+import '../nuevo_indicador/nuevo_indicador_widget.dart';
 import '../nuevo_medicamento/nuevo_medicamento_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -68,9 +70,6 @@ class _NuevoRecordatorioWidgetState extends State<NuevoRecordatorioWidget> {
                         size: 16,
                       ),
                       onPressed: () async {
-                        logFirebaseEvent(
-                            'NUEVO_RECORDATORIO_COMP_asset20_ICON_ON_TAP');
-                        logFirebaseEvent('IconButton_Bottom-Sheet');
                         Navigator.pop(context);
                       },
                     ),
@@ -82,9 +81,6 @@ class _NuevoRecordatorioWidgetState extends State<NuevoRecordatorioWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
               child: InkWell(
                 onTap: () async {
-                  logFirebaseEvent(
-                      'NUEVO_RECORDATORIO_COMP_Container_n1pt1zzn_ON_TAP');
-                  logFirebaseEvent('Container_Navigate-To');
                   await Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -139,90 +135,112 @@ class _NuevoRecordatorioWidgetState extends State<NuevoRecordatorioWidget> {
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).tertiaryColor,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: Color(0xFFC9C9C9),
+              child: InkWell(
+                onTap: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NuevaCitaWidget(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).tertiaryColor,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: Color(0xFFC9C9C9),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                            child: Icon(
-                              FFIcons.kasset29,
-                              color:
-                                  FlutterFlowTheme.of(context).secondaryColor,
-                              size: 20,
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                              child: Icon(
+                                FFIcons.kasset29,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                size: 20,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Cita médica',
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                        ],
-                      ),
-                      Icon(
-                        Icons.keyboard_arrow_right_rounded,
-                        color: Color(0xFFC6CADB),
-                        size: 24,
-                      ),
-                    ],
+                            Text(
+                              'Cita médica',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right_rounded,
+                          color: Color(0xFFC6CADB),
+                          size: 24,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).tertiaryColor,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: Color(0xFFC9C9C9),
+              child: InkWell(
+                onTap: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NuevoIndicadorWidget(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).tertiaryColor,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: Color(0xFFC9C9C9),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                            child: Icon(
-                              FFIcons.kasset24,
-                              color:
-                                  FlutterFlowTheme.of(context).secondaryColor,
-                              size: 20,
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                              child: Icon(
+                                FFIcons.kasset24,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                size: 20,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Indicador',
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                        ],
-                      ),
-                      Icon(
-                        Icons.keyboard_arrow_right_rounded,
-                        color: Color(0xFFC6CADB),
-                        size: 24,
-                      ),
-                    ],
+                            Text(
+                              'Indicador',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right_rounded,
+                          color: Color(0xFFC6CADB),
+                          size: 24,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

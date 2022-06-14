@@ -152,6 +152,54 @@ abstract class ContenidosRecord
       .get()
       .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static ContenidosRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
+      ContenidosRecord(
+        (c) => c
+          ..nombre = snapshot.data['nombre']
+          ..previewImage = snapshot.data['preview_image']
+          ..categoriaPrincipal = snapshot.data['categoria_principal']
+          ..categoriasSecundarias = safeGet(
+              () => ListBuilder(snapshot.data['categorias_secundarias']))
+          ..etapasRelevantes =
+              safeGet(() => ListBuilder(snapshot.data['etapas_relevantes']))
+          ..imgMicro1 = snapshot.data['img_micro_1']
+          ..imgMicro2 = snapshot.data['img_micro_2']
+          ..imgMicro3 = snapshot.data['img_micro_3']
+          ..imgMicro4 = snapshot.data['img_micro_4']
+          ..imgMicro5 = snapshot.data['img_micro_5']
+          ..nombreMicro1 = snapshot.data['nombre_micro_1']
+          ..nombreMicro2 = snapshot.data['nombre_micro_2']
+          ..nombreMicro3 = snapshot.data['nombre_micro_3']
+          ..nombreMicro4 = snapshot.data['nombre_micro_4']
+          ..nombreMicro5 = snapshot.data['nombre_micro_5']
+          ..tipoImgMicro1 = snapshot.data['tipo_img_micro_1']
+          ..tipoImgMicro2 = snapshot.data['tipo_img_micro_2']
+          ..tipoImgMicro3 = snapshot.data['tipo_img_micro_3']
+          ..tipoImgMicro4 = snapshot.data['tipo_img_micro_4']
+          ..tipoImgMicro5 = snapshot.data['tipo_img_micro_5']
+          ..infoMicro1 = snapshot.data['info_micro_1']
+          ..infoMicro2 = snapshot.data['info_micro_2']
+          ..infoMicro3 = snapshot.data['info_micro_3']
+          ..infoMicro4 = snapshot.data['info_micro_4']
+          ..infoMicro5 = snapshot.data['info_micro_5']
+          ..reference = ContenidosRecord.collection.doc(snapshot.objectID),
+      );
+
+  static Future<List<ContenidosRecord>> search(
+          {String term,
+          FutureOr<LatLng> location,
+          int maxResults,
+          double searchRadiusMeters}) =>
+      FFAlgoliaManager.instance
+          .algoliaQuery(
+            index: 'contenidos',
+            term: term,
+            maxResults: maxResults,
+            location: location,
+            searchRadiusMeters: searchRadiusMeters,
+          )
+          .then((r) => r.map(fromAlgolia).toList());
+
   ContenidosRecord._();
   factory ContenidosRecord([void Function(ContenidosRecordBuilder) updates]) =
       _$ContenidosRecord;

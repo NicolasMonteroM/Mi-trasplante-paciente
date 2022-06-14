@@ -71,9 +71,6 @@ class _SaltoMedicamentoWidgetState extends State<SaltoMedicamentoWidget> {
                       size: 16,
                     ),
                     onPressed: () async {
-                      logFirebaseEvent(
-                          'SALTO_MEDICAMENTO_COMP_arrowLeft_ICON_ON_TAP');
-                      logFirebaseEvent('IconButton_Bottom-Sheet');
                       Navigator.pop(context);
                     },
                   ),
@@ -91,9 +88,6 @@ class _SaltoMedicamentoWidgetState extends State<SaltoMedicamentoWidget> {
                         size: 16,
                       ),
                       onPressed: () async {
-                        logFirebaseEvent(
-                            'SALTO_MEDICAMENTO_COMP_asset20_ICON_ON_TAP');
-                        logFirebaseEvent('IconButton_Bottom-Sheet');
                         Navigator.pop(context);
                       },
                     ),
@@ -241,9 +235,6 @@ class _SaltoMedicamentoWidgetState extends State<SaltoMedicamentoWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            logFirebaseEvent(
-                                'SALTO_MEDICAMENTO_COMP_Continue_ON_TAP');
-                            logFirebaseEvent('Continue_Navigate-To');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(

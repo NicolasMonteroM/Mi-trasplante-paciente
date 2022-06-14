@@ -66,6 +66,14 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   int get age;
 
   @nullable
+  @BuiltValueField(wireName: 'listado_esquema')
+  BuiltList<DocumentReference> get listadoEsquema;
+
+  @nullable
+  @BuiltValueField(wireName: 'categorias_recomendadas')
+  BuiltList<String> get categoriasRecomendadas;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -83,7 +91,9 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..weight = ''
     ..gender = ''
     ..stage = ''
-    ..age = 0;
+    ..age = 0
+    ..listadoEsquema = ListBuilder()
+    ..categoriasRecomendadas = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -142,4 +152,6 @@ Map<String, dynamic> createUsersRecordData({
           ..weight = weight
           ..gender = gender
           ..stage = stage
-          ..age = age));
+          ..age = age
+          ..listadoEsquema = null
+          ..categoriasRecomendadas = null));

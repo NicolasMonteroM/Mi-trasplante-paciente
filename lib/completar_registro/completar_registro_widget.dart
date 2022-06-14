@@ -32,8 +32,6 @@ class _CompletarRegistroWidgetState extends State<CompletarRegistroWidget> {
     alturaController = TextEditingController();
     pesoController = TextEditingController();
     edadController = TextEditingController();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Completar_registro'});
   }
 
   @override
@@ -512,11 +510,6 @@ class _CompletarRegistroWidgetState extends State<CompletarRegistroWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            logFirebaseEvent(
-                                'COMPLETAR_REGISTRO_PAGE_Button-Personal-Info_ON_TAP');
-                            logFirebaseEvent(
-                                'Button-Personal-Info_Backend-Call');
-
                             final usersUpdateData = createUsersRecordData(
                               height: alturaController.text,
                               gender: genderValue,
@@ -524,8 +517,6 @@ class _CompletarRegistroWidgetState extends State<CompletarRegistroWidget> {
                               age: int.parse(edadController.text),
                             );
                             await currentUserReference.update(usersUpdateData);
-                            logFirebaseEvent(
-                                'Button-Personal-Info_Navigate-To');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(

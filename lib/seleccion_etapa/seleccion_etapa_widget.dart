@@ -24,13 +24,6 @@ class _SeleccionEtapaWidgetState extends State<SeleccionEtapaWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  void initState() {
-    super.initState();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'Seleccion_etapa'});
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -96,9 +89,6 @@ class _SeleccionEtapaWidgetState extends State<SeleccionEtapaWidget> {
                                   size: 24,
                                 ),
                                 onPressed: () async {
-                                  logFirebaseEvent(
-                                      'SELECCION_ETAPA_PAGE_arrow_back_rounded_ICON_ON_TAP');
-                                  logFirebaseEvent('IconButton_Navigate-Back');
                                   Navigator.pop(context);
                                 },
                               ),
@@ -186,7 +176,7 @@ class _SeleccionEtapaWidgetState extends State<SeleccionEtapaWidget> {
                               'Estoy próximo a tener mi trasplante de un donante vivo',
                               'Ya he sido trasplantado',
                               'He sido trasplantado y he perdido uno o varios injertos'
-                            ].toList(),
+                            ],
                             onChanged: (val) =>
                                 setState(() => stageValue = val),
                             width: MediaQuery.of(context).size.width,
@@ -224,15 +214,10 @@ class _SeleccionEtapaWidgetState extends State<SeleccionEtapaWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 16),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            logFirebaseEvent(
-                                'SELECCION_ETAPA_PAGE_Button-Stage_ON_TAP');
-                            logFirebaseEvent('Button-Stage_Backend-Call');
-
                             final usersUpdateData = createUsersRecordData(
                               stage: stageValue,
                             );
                             await currentUserReference.update(usersUpdateData);
-                            logFirebaseEvent('Button-Stage_Navigate-To');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(

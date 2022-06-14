@@ -24,9 +24,6 @@ class _ConfirmacionEntradaWidgetState extends State<ConfirmacionEntradaWidget> {
       padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
       child: InkWell(
         onTap: () async {
-          logFirebaseEvent(
-              'CONFIRMACION_ENTRADA_COMP_Container_qnwju8pd_ON_TAP');
-          logFirebaseEvent('Container_Bottom-Sheet');
           Navigator.pop(context);
         },
         child: Container(
