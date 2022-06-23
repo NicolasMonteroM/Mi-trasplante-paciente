@@ -25,11 +25,13 @@ class MedicionLiquidosRefWidget extends StatefulWidget {
 }
 
 class _MedicionLiquidosRefWidgetState extends State<MedicionLiquidosRefWidget> {
+  TextEditingController indicacionesController;
   TextEditingController inputController;
 
   @override
   void initState() {
     super.initState();
+    indicacionesController = TextEditingController();
     inputController = TextEditingController();
   }
 
@@ -211,6 +213,63 @@ class _MedicionLiquidosRefWidgetState extends State<MedicionLiquidosRefWidget> {
                                   ),
                             ),
                           ],
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                          child: TextFormField(
+                            controller: indicacionesController,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: '¿Hay algo que quieras anotar?',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Proxima nova',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    fontWeight: FontWeight.normal,
+                                    useGoogleFonts: false,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Proxima nova',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    fontWeight: FontWeight.normal,
+                                    useGoogleFonts: false,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFFC9C9C9),
+                                  width: 0,
+                                ),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFFC9C9C9),
+                                  width: 0,
+                                ),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                  24, 24, 20, 24),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Proxima nova',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontWeight: FontWeight.normal,
+                                  useGoogleFonts: false,
+                                ),
+                            maxLines: 2,
+                            keyboardType: TextInputType.multiline,
+                          ),
                         ),
                       ],
                     ),

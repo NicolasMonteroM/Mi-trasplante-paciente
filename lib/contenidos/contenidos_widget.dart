@@ -468,7 +468,7 @@ class _ContenidosWidgetState extends State<ContenidosWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Resultados de búsqueda',
+                                  'Recomendados',
                                   style: FlutterFlowTheme.of(context).subtitle1,
                                 ),
                               ],

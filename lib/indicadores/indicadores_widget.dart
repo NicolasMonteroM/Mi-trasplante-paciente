@@ -115,13 +115,13 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                       height: 48,
                                       decoration: BoxDecoration(
                                         color: Color(0xFF1944DA),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: Image.asset(
+                                            'assets/images/Component_6-2.png',
+                                          ).image,
+                                        ),
                                         borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Icon(
-                                        FFIcons.ksalud,
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
-                                        size: 24,
                                       ),
                                     ),
                                   ),
@@ -276,14 +276,14 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                         height: 48,
                                         decoration: BoxDecoration(
                                           color: Color(0xFF6A19ED),
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: Image.asset(
+                                              'assets/images/Component_6-1.png',
+                                            ).image,
+                                          ),
                                           borderRadius:
                                               BorderRadius.circular(20),
-                                        ),
-                                        child: Icon(
-                                          FFIcons.ksalud,
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
-                                          size: 24,
                                         ),
                                       ),
                                     ),
@@ -399,8 +399,9 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                                                 child: FaIcon(
                                                                   FontAwesomeIcons
                                                                       .solidDotCircle,
-                                                                  color: Color(
-                                                                      0xFFF1A83A),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
                                                                   size: 10,
                                                                 ),
                                                               ),
@@ -421,15 +422,16 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                                                 ),
                                                               ),
                                                               Text(
-                                                                'Bajo',
+                                                                'Óptimo',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyText1
                                                                     .override(
                                                                       fontFamily:
                                                                           'Proxima nova',
-                                                                      color: Color(
-                                                                          0xFFF1A83A),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryColor,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w600,
@@ -491,13 +493,13 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                       height: 48,
                                       decoration: BoxDecoration(
                                         color: Color(0xFF197BED),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: Image.asset(
+                                            'assets/images/Component_6.png',
+                                          ).image,
+                                        ),
                                         borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Icon(
-                                        FFIcons.ksalud,
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
-                                        size: 24,
                                       ),
                                     ),
                                   ),
@@ -562,8 +564,9 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                                       child: FaIcon(
                                                         FontAwesomeIcons
                                                             .solidDotCircle,
-                                                        color:
-                                                            Color(0xFFF1A83A),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .positiveFeedback,
                                                         size: 10,
                                                       ),
                                                     ),
@@ -573,7 +576,7 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                                               .fromSTEB(
                                                                   0, 0, 4, 0),
                                                       child: Text(
-                                                        '125 ml',
+                                                        '125 mmHg',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -581,25 +584,28 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      'Bajo',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Proxima nova',
-                                                            color: Color(
-                                                                0xFFF1A83A),
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            useGoogleFonts:
-                                                                false,
-                                                          ),
+                                                      'Normal',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Proxima nova',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .positiveFeedback,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                useGoogleFonts:
+                                                                    false,
+                                                              ),
                                                     ),
                                                   ],
                                                 ),
                                                 Text(
-                                                  'Hoy, 7:21 AM',
+                                                  '15 de Abril',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText2,
@@ -642,13 +648,13 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                       height: 48,
                                       decoration: BoxDecoration(
                                         color: Color(0xFF37B798),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: Image.asset(
+                                            'assets/images/Component_7.png',
+                                          ).image,
+                                        ),
                                         borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Icon(
-                                        FFIcons.ksalud,
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
-                                        size: 24,
                                       ),
                                     ),
                                   ),
@@ -713,8 +719,9 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                                       child: FaIcon(
                                                         FontAwesomeIcons
                                                             .solidDotCircle,
-                                                        color:
-                                                            Color(0xFFF1A83A),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .positiveFeedback,
                                                         size: 10,
                                                       ),
                                                     ),
@@ -724,7 +731,7 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                                               .fromSTEB(
                                                                   0, 0, 4, 0),
                                                       child: Text(
-                                                        '125 ml',
+                                                        '96 lpm',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -732,25 +739,28 @@ class _IndicadoresWidgetState extends State<IndicadoresWidget> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      'Bajo',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Proxima nova',
-                                                            color: Color(
-                                                                0xFFF1A83A),
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            useGoogleFonts:
-                                                                false,
-                                                          ),
+                                                      'Normal',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Proxima nova',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .positiveFeedback,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                useGoogleFonts:
+                                                                    false,
+                                                              ),
                                                     ),
                                                   ],
                                                 ),
                                                 Text(
-                                                  'Hoy, 7:21 AM',
+                                                  '15 de Abril',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText2,

@@ -1,5 +1,4 @@
 import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_charts.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -464,45 +463,13 @@ class _PesoCorporalWidgetState extends State<PesoCorporalWidget> {
                                     Container(
                                       width: double.infinity,
                                       height: 150,
-                                      decoration: BoxDecoration(),
-                                      child: StreamBuilder<
-                                          List<IndicadoresRecord>>(
-                                        stream: queryIndicadoresRecord(
-                                          queryBuilder: (indicadoresRecord) =>
-                                              indicadoresRecord.where('tipo',
-                                                  isEqualTo: 'Peso corporal'),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: Image.asset(
+                                            'assets/images/Screen_Shot_2022-06-23_at_9.35.38_AM.png',
+                                          ).image,
                                         ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50,
-                                                height: 50,
-                                                child: SpinKitSquareCircle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  size: 50,
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<IndicadoresRecord>
-                                              chartIndicadoresRecordList =
-                                              snapshot.data;
-                                          return Container(
-                                            width: 300,
-                                            height: 300,
-                                            child: FlutterFlowLineChart(
-                                              data: [],
-                                              backgroundColor: Colors.white,
-                                              axisBounds: AxisBounds(),
-                                              xAxisLabelInfo: AxisLabelInfo(),
-                                              yAxisLabelInfo: AxisLabelInfo(),
-                                            ),
-                                          );
-                                        },
                                       ),
                                     ),
                                     Container(
@@ -660,38 +627,6 @@ class _PesoCorporalWidgetState extends State<PesoCorporalWidget> {
                                   ],
                                 ),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16, 16, 16, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Artículos relacionados',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle1,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 12, 0, 0),
-                                  child: Container(
-                                    height: 230,
-                                    decoration: BoxDecoration(),
-                                  ),
-                                ),
-                              ],
                             ),
                           ),
                         ],
